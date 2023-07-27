@@ -19,7 +19,8 @@ import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
-import { useNavigate } from 'react-router-dom';
+
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -223,7 +224,7 @@ export default function Try() {
       </Drawer>
       <Main open={open}>
       <DrawerHeader />
-        
+        <Outlet/>
       </Main>
     </Box>
   );
