@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-notifications/lib/notifications.css';
 import './App.css';
 
 import AdminDashboard from './cmp/admin/AdminDashboard';
@@ -9,6 +10,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Protected from './cmp/Protected';
 import Dashboard from './cmp/admin/Dashboard';
 import DashboadHome from './cmp/admin/DashboardHome';
+import Addcourses from './cmp/admin/Addcourses';
+import Courselist from './cmp/admin/Courselist';
 
 
 function App() {
@@ -33,6 +36,8 @@ function App() {
             }
           >
             <Route path="dashboardhome" element={<DashboadHome/>}/>
+            <Route path="addcourses" element={<Addcourses/>}/>
+            <Route path="courselist" element={<Courselist/>}/>
             
           </Route>
 

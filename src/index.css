@@ -11,10 +11,57 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.form{
+
+.form {
   /* border:2px solid blue; */
-  height:20vh;
-  width:20vw;
+  height: 20vh;
+  width: 20vw;
   margin: 5vw auto;
 }
 
+.dashNavigate {
+  text-decoration: none;
+  color: rgb(243, 8, 8);
+}
+
+.dashNavigate:hover {
+  color: rgb(215, 159, 159);
+}
+
+.dashNavigateRoot {
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
+}
+
+.addCourseForm {
+  margin: auto;
+  width: 65vw;
+  /* border:2px solid blue; */
+}
+
+.courseForm {
+  display: flex;
+  justify-content: center;
+  font-family: Poppins;
+  font-size: 1.2rem;
+}
+
+.tableHead {
+  font-weight: 500;
+}
+
+.formTable {
+  border-collapse: separate;
+  border-spacing: 0.5rem;
+  width: 50%;
+
+}
+
+.formLabel {
+  margin-top: 3px;
+}
+
+.formTableDetail {
+  text-align: left
+}

@@ -5,6 +5,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import InputAdornment from '@mui/material/InputAdornment';
 import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 import { ToastContainer, toast } from 'react-toastify';
+import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,15 +20,29 @@ export default function Adminlogin() {
     const onSubmit = () => {
 
         if (user == ''){
-            toast.error("Please Enter Your Email !", {
-                position: toast.POSITION.BOTTOM_RIGHT,
-              });
+            toast.info('Enter Username', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
               return false;
         }
         if (password == ''){
-            toast.error("Please Enter Your Password !", {
-                position: toast.POSITION.BOTTOM_CENTER,
-              });
+            toast.info('Enter Password', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
               return false;
         }
 
@@ -44,7 +59,18 @@ export default function Adminlogin() {
                 console.log('response',response);
                 
                 if (response.data.success) {
-                    toast.success(response.data.message);
+                    toast.success('Login Successful', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Flip
+                    });
+                    // toast.success(response.data.message);
                     localStorage.setItem("admin-info", JSON.stringify(response.data));
                     navigate("/dashboard/dashboardhome");
                 } else {
@@ -104,7 +130,19 @@ export default function Adminlogin() {
                     </Button><br /><br />
                 </div>
             </div>
-            <ToastContainer />
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Flip}
+            />
         </>
     )
 }

@@ -19,6 +19,7 @@ import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
+import Button from '@mui/material/Button';
 
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
@@ -132,10 +133,14 @@ export default function Try() {
     navigate("/");
 
   };
+
+  const goto =(path)=>{
+    navigate(path);
+  }
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} sx={{backgroundColor:'grey', color:'white'  }}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -149,10 +154,8 @@ export default function Try() {
           <Typography variant="h6" noWrap component="div">
             Admin Dashboard
           </Typography>
-          <span style={{ flex: "1" }}></span>
-          <button className="btn btn-primary" onClick={logout}>
-            Log Out
-          </button>
+          <span style={{display:"flex", flex:"1"}}></span>
+          <Button variant="contained" onClick={logout}>Logout</Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -189,10 +192,14 @@ export default function Try() {
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
             <Typography>Courses</Typography>&nbsp;&nbsp;&nbsp;<AutoStoriesOutlinedIcon/>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails style={{cursor:"pointer"}} onClick={() => {
+                goto("/dashboard/courselist");
+              }}>
             List of Courses
           </AccordionDetails>
-          <AccordionDetails>
+          <AccordionDetails style={{cursor:"pointer"}} onClick={() => {
+                goto("/dashboard/addcourses");
+              }}>
             Add Courses
           </AccordionDetails>
         </Accordion>
