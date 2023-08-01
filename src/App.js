@@ -12,6 +12,8 @@ import Dashboard from './cmp/admin/Dashboard';
 import DashboadHome from './cmp/admin/DashboardHome';
 import Addcourses from './cmp/admin/Addcourses';
 import Courselist from './cmp/admin/Courselist';
+import AddNotice from './cmp/admin/AddNotice';
+import Noticelist from './cmp/admin/Noticelist';
 
 
 function App() {
@@ -38,6 +40,8 @@ function App() {
             <Route path="dashboardhome" element={<DashboadHome/>}/>
             <Route path="addcourses" element={<Addcourses/>}/>
             <Route path="courselist" element={<Courselist/>}/>
+            <Route path="addnotice" element={<AddNotice/>}/>
+            <Route path="noticelist" element={<Noticelist/>}/>
             
           </Route>
 

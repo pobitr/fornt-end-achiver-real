@@ -183,7 +183,7 @@ export default function Try() {
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
             <Typography> User</Typography> &nbsp;&nbsp;&nbsp;<PersonOutlinedIcon/>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails style={{cursor:"pointer"}}>
             List of Users
           </AccordionDetails>
         </Accordion>
@@ -208,10 +208,14 @@ export default function Try() {
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
             <Typography>Notices</Typography>&nbsp;&nbsp;&nbsp;<CampaignOutlinedIcon/>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails style={{cursor:"pointer"}} onClick={() => {
+                goto("/dashboard/noticelist");
+              }}>
             List of Notices
           </AccordionDetails>
-          <AccordionDetails>
+          <AccordionDetails style={{cursor:"pointer"}} onClick={() => {
+                goto("/dashboard/addnotice");
+              }}>
             Add Notices
           </AccordionDetails>
         </Accordion>
@@ -220,10 +224,10 @@ export default function Try() {
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
             <Typography>Roports</Typography>&nbsp;&nbsp;&nbsp;<DescriptionOutlinedIcon/>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails style={{cursor:"pointer"}}>
             Reviews
           </AccordionDetails>
-          <AccordionDetails>
+          <AccordionDetails style={{cursor:"pointer"}}>
             Downloads
           </AccordionDetails>
         </Accordion>
