@@ -51,6 +51,7 @@ export default function Noticelist() {
         if (response.data.success) {
           toast.success(response.data.message);
           getNotice();
+          setShow(false);
         } else {
           toast.error(response.data.message);
         }

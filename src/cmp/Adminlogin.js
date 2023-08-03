@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
@@ -10,11 +10,18 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
+
+
 export default function Adminlogin() {
     const navigate = useNavigate();
     const [user, setUser] = useState("");
     // const [email, setEmail]= useState('');
     const [password, setpassword] = useState("");
+
+    useEffect(()=>{
+
+       
+    },[])
 
 
     const onSubmit = () => {
@@ -87,6 +94,8 @@ export default function Adminlogin() {
     return (
         <>
             <div >
+                
+                {/* <Loader/> */}
                 <h1 style={{ 'textAlign': 'center' }} >Admin Login Form</h1>
                 <div className='form'>
                     {/* Username field*/}

@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-notifications/lib/notifications.css";
 import "./App.css";
-
+import axios from "axios";
 import AdminDashboard from "./cmp/admin/AdminDashboard";
 import Adminlogin from "./cmp/Adminlogin";
 import Drawer from "./cmp/admin/Drawer";
@@ -15,16 +15,42 @@ import Courselist from "./cmp/admin/Courselist";
 import AddNotice from "./cmp/admin/AddNotice";
 import Noticelist from "./cmp/admin/Noticelist";
 import Noticeedit from "./cmp/admin/Noticeedit";
+import Loader from "./cmp/Loader";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [loader, setLoader] = useState(false);
+  useEffect(() => {
+    axios.interceptors.request.use(
+      function (config) {
+        setLoader(true);
+        return config;
+      },
+      function (error) {
+        return Promise.reject(error);
+      }
+    );
+
+    axios.interceptors.response.use(
+      function (response) {
+        setLoader(false);
+        return response;
+      },
+      function (error) {
+        return Promise.reject(error);
+      }
+    );
+  }, []);
   return (
     <>
+      <Loader show={loader} />
       {/* <AdminDashboard/> */}
       {/* <Adminlogin /> */}
       {/* <Drawer /> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Adminlogin />}></Route>
+          {/* <Route path="loader" element={<Loader />} /> */}
 
           <Route
             path="/dashboard/*"
