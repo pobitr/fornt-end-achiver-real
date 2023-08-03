@@ -17,6 +17,10 @@ import Noticelist from "./cmp/admin/Noticelist";
 import Noticeedit from "./cmp/admin/Noticeedit";
 import Loader from "./cmp/Loader";
 import { useEffect, useState } from "react";
+import Review from "./cmp/admin/Review";
+import DownloadeCount from "./cmp/admin/DownloadeCount";
+import Userslist from "./cmp/admin/Userslist";
+import Courseedit from "./cmp/admin/Courseedit";
 
 function App() {
   const [loader, setLoader] = useState(false);
@@ -62,10 +66,14 @@ function App() {
           >
             <Route path="dashboardhome" element={<DashboadHome />} />
             <Route path="addcourses" element={<Addcourses />} />
+            <Route path="userslist" element={<Userslist/>} />
             <Route path="courselist" element={<Courselist />} />
+            <Route path="courseedit/:id" element={<Courseedit/>} />
             <Route path="addnotice" element={<AddNotice />} />
             <Route path="noticelist" element={<Noticelist />} />
             <Route path="noticeedit/:id" element={<Noticeedit />} />
+            <Route path="review" element={<Review />} />
+            <Route path="Downloadcount" element={<DownloadeCount/>} />
           </Route>
         </Routes>
       </BrowserRouter>

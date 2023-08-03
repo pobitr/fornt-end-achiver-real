@@ -183,7 +183,9 @@ export default function Try() {
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
             <Typography> User</Typography> &nbsp;&nbsp;&nbsp;<PersonOutlinedIcon/>
           </AccordionSummary>
-          <AccordionDetails style={{cursor:"pointer"}}>
+          <AccordionDetails style={{cursor:"pointer"}} onClick={() => {
+                goto("/dashboard/userslist");
+              }}>
             List of Users
           </AccordionDetails>
         </Accordion>
@@ -224,10 +226,14 @@ export default function Try() {
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
             <Typography>Roports</Typography>&nbsp;&nbsp;&nbsp;<DescriptionOutlinedIcon/>
           </AccordionSummary>
-          <AccordionDetails style={{cursor:"pointer"}}>
+          <AccordionDetails style={{cursor:"pointer"}} onClick={() => {
+                goto("/dashboard/review");
+              }}>
             Reviews
           </AccordionDetails>
-          <AccordionDetails style={{cursor:"pointer"}}>
+          <AccordionDetails style={{cursor:"pointer"}} onClick={() => {
+                goto("/dashboard/Downloadcount");
+              }}>
             Downloads
           </AccordionDetails>
         </Accordion>

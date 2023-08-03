@@ -1,13 +1,20 @@
 import React, { useState,useEffect } from 'react';
-
+import Button from "react-bootstrap/Button";
 import Table from 'react-bootstrap/Table';
 import { ToastContainer, toast } from "react-toastify";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export default function Courselist() {
+
   const[courseList, setcourseList]=useState([])
+
+  const navigate=useNavigate('');
+  const goto =(path)=>{
+    navigate(path);
+  }
 
   useEffect(() => {
     getNotice()
@@ -59,6 +66,18 @@ const getNotice = () => {
                         <td>{course.courseName}</td>
                         <td>{course.courseDuration}</td>
                         <td>{course.courseDescription}</td>
+                        <td></td>
+                        <td><Button
+                  variant="outline-primary"
+                  onClick={() => {
+                    goto("/dashboard/courseedit/" + course.id);
+                  }}
+                >
+                  Edit
+                </Button>{" "}
+                <Button variant="outline-warning" >
+                  Delete
+                </Button></td>
                         
                         
                     </tr>
