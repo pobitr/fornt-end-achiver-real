@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -78,7 +78,9 @@ export default function Addcourses() {
 
   return (
     <>
+    
       <div style={{ margin: "auto", width: "60%", padding: "10px" }}>
+      <h1>Add Course</h1><hr/>
         <FloatingLabel
           controlId="floatingInput"
           label="Course Code"
@@ -162,6 +164,7 @@ export default function Addcourses() {
             Image Upload
           </Button>
         </Form.Group>
+        <hr/>
         <Button
           variant="primary"
           onClick={onSubmit}
