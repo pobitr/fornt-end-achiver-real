@@ -19,6 +19,9 @@ export default function Adminlogin() {
     const [password, setpassword] = useState("");
 
     useEffect(()=>{
+        if (localStorage.getItem("admin-info")) {
+            navigate("/dashboard/dashboardhome");
+          }
 
        
     },[])

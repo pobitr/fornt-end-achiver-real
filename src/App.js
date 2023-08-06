@@ -21,6 +21,7 @@ import Review from "./cmp/admin/Review";
 import DownloadeCount from "./cmp/admin/DownloadeCount";
 import Userslist from "./cmp/admin/Userslist";
 import Courseedit from "./cmp/admin/Courseedit";
+import ErrorPage from "./cmp/ErrorPage";
 
 function App() {
   const [loader, setLoader] = useState(false);
@@ -37,7 +38,10 @@ function App() {
 
     axios.interceptors.response.use(
       function (response) {
-        setLoader(false);
+        
+        setTimeout(() => {
+          setLoader(false);
+        }, 1000);
         return response;
       },
       function (error) {
@@ -75,6 +79,7 @@ function App() {
             <Route path="review" element={<Review />} />
             <Route path="Downloadcount" element={<DownloadeCount/>} />
           </Route>
+          <Route path="*" element={<ErrorPage/>}/>
         </Routes>
       </BrowserRouter>
     </>

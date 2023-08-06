@@ -5,3 +5,8 @@ export function showLoader() {
     
     
 }
+
+export function getName(){
+    const admin = JSON.parse(localStorage.getItem("admin-info"))
+    return admin;
+}

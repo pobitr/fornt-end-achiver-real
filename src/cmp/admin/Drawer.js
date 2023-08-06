@@ -22,6 +22,7 @@ import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import Button from '@mui/material/Button';
 
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import { getName } from '../../Service/common';
 
 const drawerWidth = 240;
 
@@ -155,6 +156,8 @@ export default function Try() {
             Admin Dashboard
           </Typography>
           <span style={{display:"flex", flex:"1"}}></span>
+          
+          <span className="mx-2">Hello { getName().response.user }</span>
           <Button variant="contained" onClick={logout}>Logout</Button>
         </Toolbar>
       </AppBar>
