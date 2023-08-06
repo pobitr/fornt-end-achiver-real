@@ -2,12 +2,17 @@ import React, { useState,useEffect } from 'react';
 import Button from "react-bootstrap/Button";
 import Table from 'react-bootstrap/Table';
 import { ToastContainer, toast } from "react-toastify";
+import Modal from "react-bootstrap/Modal";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
 
 export default function Courselist() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const[courseList, setcourseList]=useState([])
 
@@ -40,6 +45,27 @@ const getNotice = () => {
             console.log(error);
         });
 }
+
+const onDelete = (id) => {
+  var data = {
+    id: id,
+  };
+  axios
+    .post("http://localhost:8080/api/course/courseDelete", data)
+    .then(function (response) {
+      console.log("response", response);
+      if (response.data.success) {
+        toast.success(response.data.message);
+        getNotice();
+        setShow(false);
+      } else {
+        toast.error(response.data.message);
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
   return (
     <div>
       <h1>Course List</h1>
@@ -75,9 +101,28 @@ const getNotice = () => {
                 >
                   Edit
                 </Button>{" "}
-                <Button variant="outline-warning" >
+                <Button variant="outline-warning" onClick={handleShow}>
                   Delete
-                </Button></td>
+                </Button>
+                <Modal
+                  show={show}
+                  onHide={handleClose}
+                  style={{ marginTop: "50px" }}
+                >
+                  <Modal.Header closeButton>
+                    <Modal.Title>Notice Delete !!</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>Are You sure !</Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Close
+                    </Button>
+                    <Button variant="outline-warning" onClick={() => onDelete(course.id)}>
+                  Delete
+                </Button>
+                  </Modal.Footer>
+                </Modal>
+                </td>
                         
                         
                     </tr>

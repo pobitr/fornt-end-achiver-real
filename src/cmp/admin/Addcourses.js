@@ -140,17 +140,19 @@ export default function Addcourses() {
           controlId="floatingTextarea2"
           label="Description"
           className="mb-3"
-          value={courseDescription}
-          onChange={(e) => {
-            setcourseDescription(e.target.value);
-          }}
+          
         >
           <Form.Control
             as="textarea"
             placeholder="Leave a comment here"
             style={{ height: "100px" }}
+            value={courseDescription}
+          onChange={(e) => {
+            setcourseDescription(e.target.value);
+          }}
           />
         </FloatingLabel>
+
         <Form.Group controlId="formFile" className="mb-3">
           <input
             type="file"
