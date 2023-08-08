@@ -22,6 +22,7 @@ import DownloadeCount from "./cmp/admin/DownloadeCount";
 import Userslist from "./cmp/admin/Userslist";
 import Courseedit from "./cmp/admin/Courseedit";
 import ErrorPage from "./cmp/ErrorPage";
+import Home from "./cmp/Home";
 
 function App() {
   const [loader, setLoader] = useState(false);
@@ -57,8 +58,9 @@ function App() {
       {/* <Drawer /> */}
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Adminlogin />}></Route>
+          <Route path="adminlogin" element={<Adminlogin />}></Route>
           {/* <Route path="loader" element={<Loader />} /> */}
+          <Route path="/" element={<Home/>} />
 
           <Route
             path="/dashboard/*"

@@ -32,7 +32,7 @@ const getNotice = () => {
     var data = {}
 
     axios.post('http://localhost:8080/api/course/allcourse', data).then(function (response) {
-        // console.log('response', response);
+        console.log('response', response);
         if (response.data.success) {
             toast.success(response.data.message);
             setcourseList(response.data.response)
@@ -92,7 +92,7 @@ const onDelete = (id) => {
                         <td>{course.courseName}</td>
                         <td>{course.courseDuration}</td>
                         <td>{course.courseDescription}</td>
-                        <td></td>
+                        <td><img src={'http://localhost:8080/images/'+course.fileName} style={{width:'40px', heigh:'40px' }}></img></td>
                         <td><Button
                   variant="outline-primary"
                   onClick={() => {
@@ -110,7 +110,7 @@ const onDelete = (id) => {
                   style={{ marginTop: "50px" }}
                 >
                   <Modal.Header closeButton>
-                    <Modal.Title>Notice Delete !!</Modal.Title>
+                    <Modal.Title>Course Delete !!</Modal.Title>
                   </Modal.Header>
                   <Modal.Body>Are You sure !</Modal.Body>
                   <Modal.Footer>
