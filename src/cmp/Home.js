@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
@@ -11,8 +11,59 @@ import contact from "./images/contact.svg";
 import fb from "./images/facebook-square-color-icon.svg";
 import linkedin from "./images/linkedin-square-color-icon.svg";
 import git from "./images/github-icon.svg";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 export default function Home() {
+  const [noticeList, setnoticeList] = useState([]);
+  const [courseList, setcourseList] = useState([]);
+  const navigate = useNavigate();
+  const goto = (path) => {
+    navigate(path);
+  };
+  useEffect(() => {
+    getNotice();
+    getCourse();
+  }, []);
+
+  const getNotice = () => {
+    var data = {};
+
+    axios
+      .post("http://localhost:8080/api/notice/allNotice", data)
+      .then(function (response) {
+        console.log("response", response);
+        if (response.data.success) {
+          toast.success(response.data.message);
+          setnoticeList(response.data.response);
+        } else {
+          toast.error(response.data.message);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const getCourse = () => {
+    var data = {};
+
+    axios
+      .post("http://localhost:8080/api/course/allcourse", data)
+      .then(function (response) {
+        console.log("response", response);
+        if (response.data.success) {
+          toast.success(response.data.message);
+          setcourseList(response.data.response);
+        } else {
+          toast.error(response.data.message);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   return (
     <>
       <div
@@ -245,141 +296,53 @@ export default function Home() {
           <h1 className="text-danger mb-3 border-bottom border-2 border-danger">
             Notice
           </h1>
-          <p>content1</p>
-          <p>content1</p>
-          <p>content1</p>
-          <p>content1</p>
+          {noticeList.map((notice, i) => (
+            <div>
+              <dl style={{}}>
+                <dt
+                  style={{
+                    textAlign: "center",
+                    textTransform: "uppercase",
+                    color: "#4CAF50",
+                  }}
+                >
+                  {notice.noticeTitle}
+                </dt>
+                <dd>{notice.noticeDesc}</dd>
+              </dl>
+              <h6></h6>
+              <p></p>
+            </div>
+          ))}
         </div>
       </div>
-
-      <div id="courses" className="mt-5 text-center text-success">
-        <h1 className="mb-5">Courses</h1>
-        <div className="d-flex flex-wrap justify-content-center gap-5">
-          <div className="card" style={{ width: "20rem" }}>
-            <img
-              src="https://web-dev.imgix.net/image/FNkVSAX8UDTTQWQkKftSgGe9clO2/uZ3hQS2EPrA9csOgkoXI.png?auto=format&fit=max&w=1200&fm=auto"
-              className="card-img-top"
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
+      
+        <div id="courses" className="mt-5 text-center text-success">
+          <h1 className="mb-5">Courses</h1>
+          
+          <div className="d-flex flex-wrap justify-content-center gap-5">
+          {courseList.map((course, i) => (
+            <div className="card" style={{ width: "20rem" }}>
+              <img
+               src={'http://localhost:8080/images/'+course.fileName}
+                className="card-img-top"
+                alt="..."
+              />
+              <div className="card-body">
+                <h5 className="card-title">{course.courseName}</h5>
+                <p className="card-text">
+                {course.courseDescription}
+                </p>
+                <a href="#" className="btn btn-primary">
+                  Go somewhere
+                </a>
+              </div>
             </div>
+             ))}
           </div>
-
-          <div className="card " style={{ width: "20rem" }}>
-            <img
-              src="https://web-dev.imgix.net/image/FNkVSAX8UDTTQWQkKftSgGe9clO2/uZ3hQS2EPrA9csOgkoXI.png?auto=format&fit=max&w=1200&fm=auto"
-              className="card-img-top"
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
-
-          <div className="card " style={{ width: "20rem" }}>
-            <img
-              src="https://web-dev.imgix.net/image/FNkVSAX8UDTTQWQkKftSgGe9clO2/uZ3hQS2EPrA9csOgkoXI.png?auto=format&fit=max&w=1200&fm=auto"
-              className="card-img-top"
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
-
-          <div className="card " style={{ width: "20rem" }}>
-            <img
-              src="https://web-dev.imgix.net/image/FNkVSAX8UDTTQWQkKftSgGe9clO2/uZ3hQS2EPrA9csOgkoXI.png?auto=format&fit=max&w=1200&fm=auto"
-              className="card-img-top"
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
-          <div className="card " style={{ width: "20rem" }}>
-            <img
-              src="https://web-dev.imgix.net/image/FNkVSAX8UDTTQWQkKftSgGe9clO2/uZ3hQS2EPrA9csOgkoXI.png?auto=format&fit=max&w=1200&fm=auto"
-              className="card-img-top"
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
-          <div className="card " style={{ width: "20rem" }}>
-            <img
-              src="https://web-dev.imgix.net/image/FNkVSAX8UDTTQWQkKftSgGe9clO2/uZ3hQS2EPrA9csOgkoXI.png?auto=format&fit=max&w=1200&fm=auto"
-              className="card-img-top"
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
-          <div className="card" style={{ width: "20rem" }}>
-            <img
-              src="https://web-dev.imgix.net/image/FNkVSAX8UDTTQWQkKftSgGe9clO2/uZ3hQS2EPrA9csOgkoXI.png?auto=format&fit=max&w=1200&fm=auto"
-              className="card-img-top"
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
+         
         </div>
-      </div>
-
+      
       <div
         id="contactus"
         className="my-5"
@@ -441,9 +404,17 @@ export default function Home() {
 
         {/* Admin login button */}
         <div className="d-flex justify-content-end mx-5">
-          <button className="btn btn-sm btn-outline-dark">Admin login</button>
+          <button
+            className="btn btn-sm btn-outline-dark"
+            onClick={() => {
+              goto("/adminlogin");
+            }}
+          >
+            Admin login
+          </button>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
