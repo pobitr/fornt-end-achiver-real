@@ -81,6 +81,7 @@ export default function Addcourses() {
     
       <div style={{ margin: "auto", width: "60%", padding: "10px" }}>
       <h1>Add Course</h1><hr/>
+      <div aria-autocomplete="off">
         <FloatingLabel
           controlId="floatingInput"
           label="Course Code"
@@ -93,6 +94,7 @@ export default function Addcourses() {
             onChange={(e) => {
               setcourseCode(e.target.value);
             }}
+            autoComplete="off"
           />
         </FloatingLabel>
         <FloatingLabel
@@ -107,6 +109,7 @@ export default function Addcourses() {
             onChange={(e) => {
               setcourseName(e.target.value);
             }}
+            autoComplete="off"
           />
         </FloatingLabel>
         <Form.Select
@@ -116,6 +119,7 @@ export default function Addcourses() {
           onChange={(e) => {
             setcourseDuration(e.target.value);
           }}
+          autoComplete="off"
         >
           <option>Course Duration (months & years)</option>
           <option value="1">1 month</option>
@@ -131,6 +135,7 @@ export default function Addcourses() {
           onChange={(e) => {
             setcertificateAvailable(e.target.value);
           }}
+          autoComplete="off"
         >
           <option>Course Certificate Available</option>
           <option value="yes">Yes</option>
@@ -150,6 +155,7 @@ export default function Addcourses() {
           onChange={(e) => {
             setcourseDescription(e.target.value);
           }}
+          autoComplete="off"
           />
         </FloatingLabel>
 
@@ -177,7 +183,7 @@ export default function Addcourses() {
         <br />
         <br />
       </div>
-
+      </div>
       <ToastContainer />
     </>
   );

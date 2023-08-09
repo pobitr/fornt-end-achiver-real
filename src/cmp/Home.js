@@ -195,7 +195,7 @@ export default function Home() {
             <div className="carousel-item active" style={{ height: "70vh" }}>
               <img
                 style={{ height: "100%" }}
-                src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+                src="https://source.unsplash.com/random/1920x1080/?wallpaper,education"
                 className="d-block w-100"
                 alt="..."
               />
@@ -209,7 +209,7 @@ export default function Home() {
             <div className="carousel-item" style={{ height: "70vh" }}>
               <img
                 style={{ height: "100%" }}
-                src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+                src="https://source.unsplash.com/random/1920x1080/?wallpaper,computer-education"
                 className="d-block w-100"
                 alt="..."
               />
@@ -223,7 +223,7 @@ export default function Home() {
             <div className="carousel-item" style={{ height: "70vh" }}>
               <img
                 style={{ height: "100%" }}
-                src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+                src="https://img.freepik.com/premium-photo/artists-working-desk-creative-office_13339-17748.jpg?size=626&ext=jpg&ga=GA1.2.317909218.1691507938&semt=ais"
                 className="d-block w-100"
                 alt="..."
               />
