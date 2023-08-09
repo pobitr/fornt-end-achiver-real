@@ -11,6 +11,9 @@ import contact from "./images/contact.svg";
 import fb from "./images/facebook-square-color-icon.svg";
 import linkedin from "./images/linkedin-square-color-icon.svg";
 import git from "./images/github-icon.svg";
+import slider1 from "./images/slider1.jpg";
+import slider2 from "./images/slider2.png";
+import slider3 from "./images/slider3.png";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
@@ -195,7 +198,7 @@ export default function Home() {
             <div className="carousel-item active" style={{ height: "70vh" }}>
               <img
                 style={{ height: "100%" }}
-                src="https://source.unsplash.com/random/1920x1080/?wallpaper,education"
+                src={slider1}
                 className="d-block w-100"
                 alt="..."
               />
@@ -209,7 +212,7 @@ export default function Home() {
             <div className="carousel-item" style={{ height: "70vh" }}>
               <img
                 style={{ height: "100%" }}
-                src="https://source.unsplash.com/random/1920x1080/?wallpaper,computer-education"
+                src={slider2}
                 className="d-block w-100"
                 alt="..."
               />
@@ -223,7 +226,7 @@ export default function Home() {
             <div className="carousel-item" style={{ height: "70vh" }}>
               <img
                 style={{ height: "100%" }}
-                src="https://img.freepik.com/premium-photo/artists-working-desk-creative-office_13339-17748.jpg?size=626&ext=jpg&ga=GA1.2.317909218.1691507938&semt=ais"
+                src={slider3}
                 className="d-block w-100"
                 alt="..."
               />
