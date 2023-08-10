@@ -16,19 +16,31 @@ import slider2 from "./images/slider2.png";
 import slider3 from "./images/slider3.png";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { getUserName } from "../Service/common";
 import axios from "axios";
 
 export default function Home() {
   const [noticeList, setnoticeList] = useState([]);
   const [courseList, setcourseList] = useState([]);
+  // const [userinfo, setUserinfo] = useState();
   const navigate = useNavigate();
+
   const goto = (path) => {
     navigate(path);
   };
   useEffect(() => {
+    // getUser();
     getNotice();
     getCourse();
   }, []);
+
+  // const getUser =()=>{
+  //   if (localStorage.getItem("user-info")) {
+  //     setUserinfo();
+      
+  //   } 
+
+  // }
 
   const getNotice = () => {
     var data = {};
@@ -143,10 +155,15 @@ export default function Home() {
               </ul>
               <form className="mx-5" role="search">
                 <div>
+                  {/* { userinfo ?  <h6>hello { getUserName().response.userName }</h6>: <h>hello</h> } */}
+                  {/* <span className="mx-2">Hello { getUserName().response.userName }</span> */}
                   <button
                     type="button"
                     className="btn btn-primary mx-3"
                     style={{ fontSize: "1.3rem" }}
+                    onClick={() => {
+                      goto("/login");
+                    }}
                   >
                     <LoginOutlinedIcon /> Login
                   </button>
@@ -154,6 +171,9 @@ export default function Home() {
                     type="button"
                     className="btn btn-outline-dark "
                     style={{ fontSize: "1.2rem" }}
+                    onClick={() => {
+                      goto("/signup");
+                    }}
                   >
                     <PersonAddOutlinedIcon style={{ marginBottom: "5px" }} />{" "}
                     Signup
@@ -319,33 +339,30 @@ export default function Home() {
           ))}
         </div>
       </div>
-      
-        <div id="courses" className="mt-5 text-center text-success">
-          <h1 className="mb-5">Courses</h1>
-          
-          <div className="d-flex flex-wrap justify-content-center gap-5">
+
+      <div id="courses" className="mt-5 text-center text-success">
+        <h1 className="mb-5">Courses</h1>
+
+        <div className="d-flex flex-wrap justify-content-center gap-5">
           {courseList.map((course, i) => (
             <div className="card" style={{ width: "20rem" }}>
               <img
-               src={'http://localhost:8080/images/'+course.fileName}
+                src={"http://localhost:8080/images/" + course.fileName}
                 className="card-img-top"
                 alt="..."
               />
               <div className="card-body">
                 <h5 className="card-title">{course.courseName}</h5>
-                <p className="card-text">
-                {course.courseDescription}
-                </p>
+                <p className="card-text">{course.courseDescription}</p>
                 <a href="#" className="btn btn-primary">
                   Go somewhere
                 </a>
               </div>
             </div>
-             ))}
-          </div>
-         
+          ))}
         </div>
-      
+      </div>
+
       <div
         id="contactus"
         className="my-5"

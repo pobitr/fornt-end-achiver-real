@@ -237,3 +237,124 @@ code {
     
   }
   
+   /* contact us form design end */
+
+
+  /* Login form design start */
+
+  .body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    display: flex;
+    width:100vw;
+    height:100vh;
+    justify-content: space-evenly;
+    align-items: center;
+    background:linear-gradient(120deg,#2980b9,#8e44ad);
+    font-family: 'Montserrat', sans-serif;
+    font-size:1.3rem;
+}
+
+  .wrapper{
+    background-color: rgb(255, 255, 255);
+    width:30vw;
+    box-shadow: 0px 10px 8px rgb(0,0,0,0.2);
+    border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wrapper h1{
+    width:100%;
+    text-align: center;
+    color:rgb(36, 35, 35);
+    border-bottom: 1px solid silver;
+    margin-bottom: 1rem;
+    margin-top:1rem;
+}
+.container{
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+    width:80% !important;
+    /* border:2px solid black; */
+  }
+  .container input{
+    width:100%;
+    border:none;
+    outline: none;
+    border-bottom: 2px solid silver;
+    padding:15px;
+    font-size: 1.2rem;
+    position:relative;
+    transition:all 0.3s ease-in-out;
+    /* border:2px solid black; */
+}
+.container input:focus{
+    border-color: #2691d9;
+}
+.container label{
+  position: absolute;
+  top:0.8rem;
+  left:0.6rem;
+  cursor:text;
+  color:grey;
+  transition: all 0.3s ease-in-out;
+  font-size: 1.2rem;
+}
+.formInput:focus ~ label,
+.formInput:not(:placeholder-shown).formInput:not(:focus) ~ label
+{
+    top:-0.1rem;
+    left:0.9rem;
+    color:#2691d9;
+    font-size: 0.8rem;
+}
+
+.container .show{
+  display:flex;
+  position:absolute;
+  top:50%;
+  left:90%
+}
+
+.wrapper a{
+    color:grey;
+    text-align:left;
+    text-decoration: none;
+}
+.wrapper a:hover{
+    color:blue;
+    text-decoration: underline;
+}
+.wrapper p{
+    color:grey;
+}
+.wrapper .button{
+    width:80%;
+    padding:15px;
+    background-color:#2691d9;
+    color:white;
+    font-size: 1.2rem;
+    font-family: 700;
+    border:none;
+    border-radius: 25px;
+    margin:15px 0 15px 0;
+    cursor:pointer;
+}
+
+.wrapper .button:hover{
+    background-color: #2980b9;
+    color:skyblue;
+}
+
+.body img{
+  width:35vw;
+}
+
+  /* Login form design end */
+
+
+
+  

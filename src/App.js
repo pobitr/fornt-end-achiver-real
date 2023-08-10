@@ -23,6 +23,8 @@ import Userslist from "./cmp/admin/Userslist";
 import Courseedit from "./cmp/admin/Courseedit";
 import ErrorPage from "./cmp/ErrorPage";
 import Home from "./cmp/Home";
+import Userlogin from "./cmp/user/Userlogin";
+import Signup from "./cmp/user/Signup";
 
 function App() {
   const [loader, setLoader] = useState(false);
@@ -61,6 +63,8 @@ function App() {
           <Route path="adminlogin" element={<Adminlogin />}></Route>
           {/* <Route path="loader" element={<Loader />} /> */}
           <Route path="/" element={<Home/>} />
+          <Route path="login" element={<Userlogin/>}/>
+          <Route path="signup" element={<Signup/>}/>
 
           <Route
             path="/dashboard/*"

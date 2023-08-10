@@ -10,8 +10,9 @@ const columns = [
   { field: 'id', headerName: 'ID', width: 80 },
   { field: 'name', headerName: 'Name', width: 150 },
   { field: 'email', headerName: 'Email', width: 150 },
-  { field: 'phone', headerName: 'Phone',  },
-  { field: 'age', headerName: 'Age', type: 'number' },
+  { field: 'phone', headerName: 'Phone', },
+  { field: 'age', headerName: 'Age', type: 'number',  },
+  { field: 'password', headerName: 'Password', type:'text', width: 150 },
 ];
 
 const rows = [
