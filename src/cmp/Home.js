@@ -6,6 +6,12 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import ContactPageOutlinedIcon from "@mui/icons-material/ContactPageOutlined";
 import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
 import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Fade from "@mui/material/Fade";
 import about from "./images/about.svg";
 import contact from "./images/contact.svg";
 import fb from "./images/facebook-square-color-icon.svg";
@@ -22,25 +28,25 @@ import axios from "axios";
 export default function Home() {
   const [noticeList, setnoticeList] = useState([]);
   const [courseList, setcourseList] = useState([]);
-  // const [userinfo, setUserinfo] = useState();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const navigate = useNavigate();
 
   const goto = (path) => {
     navigate(path);
   };
+
   useEffect(() => {
-    // getUser();
     getNotice();
     getCourse();
   }, []);
-
-  // const getUser =()=>{
-  //   if (localStorage.getItem("user-info")) {
-  //     setUserinfo();
-      
-  //   } 
-
-  // }
 
   const getNotice = () => {
     var data = {};
@@ -78,6 +84,10 @@ export default function Home() {
       .catch(function (error) {
         console.log(error);
       });
+  };
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
   };
   return (
     <>
@@ -155,29 +165,71 @@ export default function Home() {
               </ul>
               <form className="mx-5" role="search">
                 <div>
-                  {/* { userinfo ?  <h6>hello { getUserName().response.userName }</h6>: <h>hello</h> } */}
-                  {/* <span className="mx-2">Hello { getUserName().response.userName }</span> */}
-                  <button
-                    type="button"
-                    className="btn btn-primary mx-3"
-                    style={{ fontSize: "1.3rem" }}
-                    onClick={() => {
-                      goto("/login");
-                    }}
-                  >
-                    <LoginOutlinedIcon /> Login
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-dark "
-                    style={{ fontSize: "1.2rem" }}
-                    onClick={() => {
-                      goto("/signup");
-                    }}
-                  >
-                    <PersonAddOutlinedIcon style={{ marginBottom: "5px" }} />{" "}
-                    Signup
-                  </button>
+                  {localStorage.getItem("user-info") ? (
+                    <span className="mx-2">
+                      Hello {getUserName().response.userName}{" "}
+                      
+                      <button
+                        type="button"
+                        className="btn btn-outline-dark "
+                        style={{ fontSize: "1.2rem" }}
+                        
+                      >
+                        
+                        <Button
+                        id="fade-button"
+                        aria-controls={open ? "fade-menu" : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? "true" : undefined}
+                        onClick={handleClick}
+                      >
+                       Menu
+                      </Button>
+                      <Menu
+                        id="fade-menu"
+                        MenuListProps={{
+                          "aria-labelledby": "fade-button",
+                        }}
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        TransitionComponent={Fade}
+                      >
+                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+
+                        <MenuItem onClick={logout}><LogoutIcon
+                          style={{ marginBottom: "5px" }}
+                        />{" "}Logout</MenuItem>
+                      </Menu>
+                      </button>
+                    </span>
+                  ) : (
+                    <>
+                      <button
+                        type="button"
+                        className="btn btn-primary mx-3"
+                        style={{ fontSize: "1.3rem" }}
+                        onClick={() => {
+                          goto("/login");
+                        }}
+                      >
+                        <LoginOutlinedIcon /> Login
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-outline-dark "
+                        style={{ fontSize: "1.2rem" }}
+                        onClick={() => {
+                          goto("/signup");
+                        }}
+                      >
+                        <PersonAddOutlinedIcon
+                          style={{ marginBottom: "5px" }}
+                        />{" "}
+                        Signup
+                      </button>{" "}
+                    </>
+                  )}
                 </div>
               </form>
             </div>
