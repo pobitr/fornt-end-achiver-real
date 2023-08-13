@@ -253,6 +253,7 @@ export default function Home() {
         style={{ backgroundColor: "lightgrey" }}
       >
         <h1 className="text-center text-success mb-5">Conatct us</h1>
+        <form>
         <div className="d-flex justify-content-center flex-wrap">
           <div className="form-container mb-5" style={{ width: "55vw" }}>
             <label htmlFor="name">Name:</label>
@@ -263,11 +264,13 @@ export default function Home() {
             <textarea id="message" name="message" required defaultValue={""} />
             <input type="submit" className="button" value="Submit" />
           </div>
+          
 
           <div style={{ width: "40vw" }}>
             <img src={contact} style={{ width: "90%", height: "100%" }}></img>
           </div>
         </div>
+        </form>
       </div>
             {/* footer section */}
       <div className="mb-5">
