@@ -25,6 +25,9 @@ import ErrorPage from "./cmp/ErrorPage";
 import Home from "./cmp/Home";
 import Userlogin from "./cmp/user/Userlogin";
 import Signup from "./cmp/user/Signup";
+import CourseDesc from "./cmp/user/CourseDesc";
+import Navbar from "./cmp/Navbar";
+
 
 function App() {
   const [loader, setLoader] = useState(false);
@@ -65,6 +68,9 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="login" element={<Userlogin/>}/>
           <Route path="signup" element={<Signup/>}/>
+          <Route path="course/:id" element={<CourseDesc/>}/>
+          <Route path="navbar" element={<Navbar/>}/>
+
 
           <Route
             path="/dashboard/*"

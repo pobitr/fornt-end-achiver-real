@@ -5,6 +5,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../Navbar.js";
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -36,6 +37,37 @@ export default function Signup() {
   };
 
   const onSubmit = () => {
+    if (name == '') {
+      toast.error("Please Enter Name !", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    return false;
+    }
+    if (email == '') {
+      toast.error("Please Enter Email !", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    return false;
+    }
+    if (phone == '') {
+      toast.error("Please Enter Phone !", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    return false;
+    }
+    if (age == '') {
+      toast.error("Please Enter Age !", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    return false;
+    }
+    if (password == '') {
+      toast.error("Please Enter Password !", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    return false;
+    }
+
     var data = {
       userName: name,
       userEmail: email,
@@ -66,6 +98,7 @@ export default function Signup() {
   };
   return (
     <>
+      <Navbar />
       <div>
         <div className="body">
           <div className="wrapper">
@@ -123,6 +156,7 @@ export default function Signup() {
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
+                maxLength={6}
               />
               <label htmlFor>Create a password</label>
               <div className="show">
@@ -159,6 +193,7 @@ export default function Signup() {
             <p>
               Already have an account?{" "}
               <a
+                className="anchor"
                 style={{ cursor: "pointer" }}
                 onClick={() => {
                   goto("/login");

@@ -5,6 +5,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../Navbar.js";
 
 export default function Userlogin() {
     const [username,setUsername] = useState("");
@@ -24,6 +25,18 @@ export default function Userlogin() {
     }
 
     const onSubmit =()=>{
+        if (username == '') {
+            toast.error("Please Enter Email !", {
+                position: toast.POSITION.BOTTOM_CENTER
+              });
+            return false;
+        }
+        if (password == '') {
+            toast.error("Please Enter Password !", {
+                position: toast.POSITION.BOTTOM_CENTER
+              });
+            return false;
+        }
         var data ={
             userEmail:username,
             UserPassword:password
@@ -48,9 +61,8 @@ export default function Userlogin() {
     }
     return (
         <>
-            <div>
-                
-            </div>
+            <Navbar/>
+            
             <div className="body">
                 <div className="wrapper">
                     <h1>Login</h1>
@@ -67,7 +79,7 @@ export default function Userlogin() {
                     </div>
                     <a href="#">Forget password?</a>
                     <input className="button" type="submit" value="Login" onClick={onSubmit}/>
-                    <p>Don't have an account? <a style={{cursor:'pointer'}} onClick={()=>{goto("/signup");}}>Signup</a></p>
+                    <p>Don't have an account? <a className="anchor" style={{cursor:'pointer'}} onClick={()=>{goto("/signup");}}>Signup</a></p>
                 </div>
                 <img src={login}/>
             </div>

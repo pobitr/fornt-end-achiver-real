@@ -1,17 +1,4 @@
 import React, { useEffect, useState } from "react";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import ContactPageOutlinedIcon from "@mui/icons-material/ContactPageOutlined";
-import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
-import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
-import LogoutIcon from "@mui/icons-material/Logout";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Fade from "@mui/material/Fade";
 import about from "./images/about.svg";
 import contact from "./images/contact.svg";
 import fb from "./images/facebook-square-color-icon.svg";
@@ -22,20 +9,12 @@ import slider2 from "./images/slider2.png";
 import slider3 from "./images/slider3.png";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { getUserName } from "../Service/common";
 import axios from "axios";
+import Navbar from './Navbar'
 
 export default function Home() {
   const [noticeList, setnoticeList] = useState([]);
   const [courseList, setcourseList] = useState([]);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const navigate = useNavigate();
 
@@ -56,7 +35,7 @@ export default function Home() {
       .then(function (response) {
         console.log("response", response);
         if (response.data.success) {
-          toast.success(response.data.message);
+          // toast.success(response.data.message);
           setnoticeList(response.data.response);
         } else {
           toast.error(response.data.message);
@@ -75,7 +54,7 @@ export default function Home() {
       .then(function (response) {
         console.log("response", response);
         if (response.data.success) {
-          toast.success(response.data.message);
+          // toast.success(response.data.message);
           setcourseList(response.data.response);
         } else {
           toast.error(response.data.message);
@@ -85,163 +64,16 @@ export default function Home() {
         console.log(error);
       });
   };
-  const logout = () => {
-    localStorage.clear();
-    navigate("/");
-  };
   return (
     <>
-      <div
-        style={{
-          width: "100vw",
-          backgroundColor: "#e3f2fd",
-          fontFamily: "'Edu SA Beginner', cursive",
-          fontSize: "1.5rem",
-          position: "fixed",
-          top: "-1px",
-          zIndex: "1",
-        }}
-      >
-        <nav className="navbar navbar-expand-lg ">
-          <div className="container-fluid ">
-            <a
-              className="navbar-brand h1"
-              href="#hero"
-              style={{ fontFamily: "'Lobster', cursive", fontSize: "2rem" }}
-            >
-              Achiever Solutions
-            </a>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
-                <li className="nav-item">
-                  <a
-                    className="nav-link active"
-                    aria-current="page"
-                    href="#hero"
-                  >
-                    <HomeOutlinedIcon style={{ marginBottom: "5px" }} /> Home
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#notices">
-                    <NotificationsNoneOutlinedIcon
-                      style={{ marginBottom: "5px" }}
-                    />{" "}
-                    Notices
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#courses">
-                    <AutoStoriesOutlinedIcon style={{ marginBottom: "5px" }} />{" "}
-                    Courses
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#about">
-                    <InfoOutlinedIcon style={{ marginBottom: "5px" }} /> About
-                    us
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#contactus">
-                    <ContactPageOutlinedIcon style={{ marginBottom: "5px" }} />{" "}
-                    Contact us
-                  </a>
-                </li>
-              </ul>
-              <form className="mx-5" role="search">
-                <div>
-                  {localStorage.getItem("user-info") ? (
-                    <span className="mx-2">
-                      Hello {getUserName().response.userName}{" "}
-                      
-                      <button
-                        type="button"
-                        className="btn btn-outline-dark "
-                        style={{ fontSize: "1.2rem" }}
-                        
-                      >
-                        
-                        <Button
-                        id="fade-button"
-                        aria-controls={open ? "fade-menu" : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
-                        onClick={handleClick}
-                      >
-                       Menu
-                      </Button>
-                      <Menu
-                        id="fade-menu"
-                        MenuListProps={{
-                          "aria-labelledby": "fade-button",
-                        }}
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClose}
-                        TransitionComponent={Fade}
-                      >
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
-
-                        <MenuItem onClick={logout}><LogoutIcon
-                          style={{ marginBottom: "5px" }}
-                        />{" "}Logout</MenuItem>
-                      </Menu>
-                      </button>
-                    </span>
-                  ) : (
-                    <>
-                      <button
-                        type="button"
-                        className="btn btn-primary mx-3"
-                        style={{ fontSize: "1.3rem" }}
-                        onClick={() => {
-                          goto("/login");
-                        }}
-                      >
-                        <LoginOutlinedIcon /> Login
-                      </button>
-                      <button
-                        type="button"
-                        className="btn btn-outline-dark "
-                        style={{ fontSize: "1.2rem" }}
-                        onClick={() => {
-                          goto("/signup");
-                        }}
-                      >
-                        <PersonAddOutlinedIcon
-                          style={{ marginBottom: "5px" }}
-                        />{" "}
-                        Signup
-                      </button>{" "}
-                    </>
-                  )}
-                </div>
-              </form>
-            </div>
-          </div>
-        </nav>
-      </div>
+    <div>
+      <Navbar/>
 
       {/* heroSection */}
       <div
         id="hero"
         className="border-5"
-        style={{ width: "99vw", margin: "auto", marginTop: "75px" }}
+        style={{ width: "99vw", margin: "auto", marginTop: "8px" }}
       >
         <div id="carouselExampleCaptions" className="carousel slide">
           <div className="carousel-indicators">
@@ -337,7 +169,7 @@ export default function Home() {
       <div className="d-flex justify-content-around" style={{}}>
         <div id="about" className="aboutus" style={{ width: "60vw" }}>
           <div className="d-flex justify-content-between mt-3">
-            <img src={about} style={{ width: "80%", height: "100%" }} />
+            <img src={about} style={{width:"50%"}} />
             <div className="mx-3">
               <h3>
                 Welcome to{" "}
@@ -391,7 +223,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-
+          {/* Courses Section */}
       <div id="courses" className="mt-5 text-center text-success">
         <h1 className="mb-5">Courses</h1>
 
@@ -406,7 +238,7 @@ export default function Home() {
               <div className="card-body">
                 <h5 className="card-title">{course.courseName}</h5>
                 <p className="card-text">{course.courseDescription}</p>
-                <a href="#" className="btn btn-primary">
+                <a onClick={()=>{goto("/course/"+course.id);}} className="btn btn-primary">
                   Go somewhere
                 </a>
               </div>
@@ -414,7 +246,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-
+            {/* contact us section */}
       <div
         id="contactus"
         className="my-5"
@@ -437,7 +269,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-
+            {/* footer section */}
       <div className="mb-5">
         <footer className="d-flex flex-wrap justify-content-around border-top">
           <p className="col-md-4 mb-0 text-body-secondary mt-2">
@@ -485,6 +317,7 @@ export default function Home() {
             Admin login
           </button>
         </div>
+      </div>
       </div>
       <ToastContainer />
     </>
