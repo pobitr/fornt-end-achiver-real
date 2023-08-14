@@ -11,11 +11,13 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
-import { useNavigate } from "react-router-dom";
-import { getUserName } from "../Service/common";
+import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { getUserName } from "../../Service/common";
 
 
-export default function Navbar() {
+
+
+export default function Layout() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -32,7 +34,7 @@ export default function Navbar() {
     };
     const logout = () => {
         localStorage.clear();
-        navigate("/");
+        navigate("/login");
       };
   return (
     <>
@@ -51,7 +53,7 @@ export default function Navbar() {
           <div className="container-fluid ">
             <a
               className="navbar-brand h1"
-              onClick={()=>{goto("/");}}
+              onClick={()=>{goto("/user/UserHome");}}
               style={{ fontFamily: "'Lobster', cursive", fontSize: "2rem" }}
             >
               Achiever Solutions
@@ -77,14 +79,14 @@ export default function Navbar() {
                     className="nav-link active"
                     aria-current="page"
                    
-                    onClick={()=>{goto("/");}}
+                    onClick={()=>{goto("/user/UserHome");}}
                     style={{cursor:'pointer'}}
                   >
                     <HomeOutlinedIcon style={{ marginBottom: "5px" }} /> Home
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={()=>{goto("/");}}
+                  <a className="nav-link" onClick={()=>{goto("/user/UserHome");}}
                   style={{cursor:'pointer'}}>
                     <NotificationsNoneOutlinedIcon
                       style={{ marginBottom: "5px" }}
@@ -93,21 +95,21 @@ export default function Navbar() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={()=>{goto("/");}}
+                  <a className="nav-link" onClick={()=>{goto("/user/UserHome");}}
                   style={{cursor:'pointer'}}>
                     <AutoStoriesOutlinedIcon style={{ marginBottom: "5px" }} />{" "}
                     Courses
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={()=>{goto("/");}}
+                  <a className="nav-link" onClick={()=>{goto("/user/UserHome");}}
                   style={{cursor:'pointer'}}>
                     <InfoOutlinedIcon style={{ marginBottom: "5px" }} /> About
                     us
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={()=>{goto("/");}}
+                  <a className="nav-link" onClick={()=>{goto("/user/UserHome");}}
                   style={{cursor:'pointer'}}>
                     <ContactPageOutlinedIcon style={{ marginBottom: "5px" }} />{" "}
                     Contact us
@@ -118,7 +120,7 @@ export default function Navbar() {
                 <div>
                   {localStorage.getItem("user-info") ? (
                     <span className="mx-2">
-                      Hello {getUserName().response.userName}{" "}
+                     Hello {getUserName().response.userName}{" "}
                       
                       <button
                         type="button"
@@ -146,7 +148,7 @@ export default function Navbar() {
                         onClose={handleClose}
                         TransitionComponent={Fade}
                       >
-                        <MenuItem onClick={()=>{goto("/userprofile")}}>Profile</MenuItem>
+                        <MenuItem onClick={()=>{goto("/user/userprofile")}}>Profile</MenuItem>
 
                         <MenuItem onClick={logout}><LogoutIcon
                           style={{ marginBottom: "5px" }}
@@ -187,6 +189,7 @@ export default function Navbar() {
           </div>
         </nav>
       </div>
+      <Outlet/>
     </>
   )
 }

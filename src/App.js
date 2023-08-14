@@ -27,6 +27,10 @@ import Userlogin from "./cmp/user/Userlogin";
 import Signup from "./cmp/user/Signup";
 import CourseDesc from "./cmp/user/CourseDesc";
 import Navbar from "./cmp/Navbar";
+import UserProfile from "./cmp/user/UserProfile";
+import UserProtected from "./cmp/user/UserProtected";
+import UserHome from "./cmp/UserHome";
+import Layout from "./cmp/user/Layout";
 
 
 function App() {
@@ -58,18 +62,30 @@ function App() {
   return (
     <>
       <Loader show={loader} />
-      {/* <AdminDashboard/> */}
-      {/* <Adminlogin /> */}
-      {/* <Drawer /> */}
+     
       <BrowserRouter>
         <Routes>
           <Route path="adminlogin" element={<Adminlogin />}></Route>
-          {/* <Route path="loader" element={<Loader />} /> */}
           <Route path="/" element={<Home/>} />
           <Route path="login" element={<Userlogin/>}/>
           <Route path="signup" element={<Signup/>}/>
-          <Route path="course/:id" element={<CourseDesc/>}/>
           <Route path="navbar" element={<Navbar/>}/>
+          
+          
+
+          <Route
+          path="/user/*"
+          element={
+            <UserProtected Cmp={Layout}>
+              <Layout/>
+            </UserProtected>
+          }>
+            <Route path="UserHome" element={<UserHome/>} />
+            <Route path="userprofile" element={<UserProfile/>}/>
+            <Route path="course/:id" element={<CourseDesc/>}/>
+            
+          </Route>
+
 
 
           <Route

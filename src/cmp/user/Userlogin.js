@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import login from "../images/login.svg";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -11,6 +11,11 @@ export default function Userlogin() {
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
     const [showPassword,setShowPassword] = useState(false);
+    useEffect(()=>{
+        if (localStorage.getItem("user-info")) {
+            navigate("/user/UserHome");
+          }
+    },[])
     const showPass = ()=>{
         if(showPassword){
             setShowPassword(false)
@@ -49,7 +54,7 @@ export default function Userlogin() {
           if (response.data.success) {
             toast.success(response.data.message);
             localStorage.setItem("user-info", JSON.stringify(response.data));
-            navigate("/");
+            navigate("/user/UserHome");
 
           } else {
             toast.error(response.data.message);

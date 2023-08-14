@@ -6,8 +6,12 @@ import { ToastContainer, toast } from "react-toastify";
 import fb from "../images/facebook-square-color-icon.svg";
 import linkedin from "../images/linkedin-square-color-icon.svg";
 import git from "../images/github-icon.svg";
-import Navbar from '../Navbar';
 import { useParams } from 'react-router-dom';
+import CurrencyRupeeOutlinedIcon from '@mui/icons-material/CurrencyRupeeOutlined';
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+
+
 
 
 
@@ -66,16 +70,20 @@ export default function CourseDesc() {
   }
   return (
     <>
-      <Navbar/>
+      
       <div style={{ backgroundColor: "#f1f1fa", width: "100vw", padding: "2rem",marginTop:".5rem" }}>
         {/* Course title will go here */}
         <p style={{ fontFamily: "ubuntu", textAlign: "center", fontSize: "3rem" }}>{courseName}</p>
         {/* course descriptions first line will go here */}
         <p style={{ fontFamily: "ubuntu", textAlign: "center", fontSize: "1.2rem" }}>{courseDescription}</p>
       </div>
-      <div style={{ marginTop: "1rem", width: "70vw", display: "flex", gap: '2rem', flexDirection: "column", margin: "auto", padding: "20px" }}>
-        <div style={{ display: "flex", gap: "5rem", width: "100%" }}>
-          <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+     
+            
+      {/* Course Desc and join button*/}
+
+      <div className="d-flex flex-column m-auto" style={{ marginTop: "1rem", width: "70vw",gap: '2rem',padding: "20px" }}>
+        <div className="d-flex" style={{gap: "5rem", width: "100%" }}>
+          <div className="d-flex flex-column" style={{width: "100%" }}>
             <h2 style={{ color: "red", marginBottom: "1rem" }}>About this course</h2>
             {/* course full description will go here */}
             <p style={{ textAlign: "justify" }}>Where can I get some?
@@ -89,7 +97,45 @@ export default function CourseDesc() {
         </div>
       </div>
 
-      <div id="courses" className="mt-5 text-center text-success" style={{width:"80vw",margin:"auto"}}>
+      {/* Course duration and course fee */}
+      <div className='d-flex m-auto border mt-5 bg-primary-subtle text-dark p-4 justify-content-around' style={{width:"70vw"}}>
+        <div className='d-flex gap-1 border'>
+        <AccessTimeIcon fontSize="large"  color="success"/>
+        <h3>Duration: {courseDuration} Month</h3>
+        </div>
+
+        <div className='d-flex gap-1'>
+        <CurrencyRupeeOutlinedIcon fontSize="large" color="success"/>
+        <h3>Course Fee: Free</h3>
+        </div>
+
+        <div className='d-flex gap-1'>
+        <CheckCircleOutlinedIcon fontSize="large" color="success"/>
+        <h3>Beginner Friendly</h3>
+        </div>
+        
+      </div>
+      {/* Feedback form */}
+
+      <div id="contactus" className="my-5 m-auto" style={{ backgroundColor: "lightgrey",width:"70vw" }}>
+        <h1 className="text-center text-danger mb-5">Write your Review</h1>
+        <div className="d-flex justify-content-center flex-wrap">
+          <div className="form-container mb-5" style={{ width: "55vw" }}>
+            <label htmlFor="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+            <label htmlFor="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+            <label htmlFor="message">Review/Suggestion</label>
+            <textarea id="message" name="message" required defaultValue={""} />
+            <input type="submit" className="button" value="Submit" />
+          </div>
+        </div>
+      </div>
+
+
+      {/* Courses Section */}
+
+      <div id="courses" className="mt-5 text-center text-success m-auto" style={{width:"80vw"}}>
         <h1 className="mb-5">Explore some more Courses by us</h1>
 
         <div className="d-flex flex-wrap justify-content-center gap-5">
@@ -111,6 +157,7 @@ export default function CourseDesc() {
           ))}
         </div>
       </div>
+
 
       <div className="my-5">
         <footer className="d-flex flex-wrap justify-content-around border-top">

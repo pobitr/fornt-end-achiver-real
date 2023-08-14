@@ -12,22 +12,47 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import Navbar from './Navbar'
 
-export default function Home() {
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import ContactPageOutlinedIcon from "@mui/icons-material/ContactPageOutlined";
+import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
+import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
+import LogoutIcon from "@mui/icons-material/Logout";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Fade from "@mui/material/Fade";
+import { getUserName } from "../Service/common";
+
+export default function UserHome() {
   const [noticeList, setnoticeList] = useState([]);
   const [courseList, setcourseList] = useState([]);
 
   const navigate = useNavigate();
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
 
   const goto = (path) => {
     navigate(path);
   };
 
   useEffect(() => {
-    
     getNotice();
     getCourse();
   }, []);
-
+  const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+  
   const getNotice = () => {
     var data = {};
 
@@ -68,8 +93,8 @@ export default function Home() {
   return (
     <>
     <div>
-      <Navbar/>
 
+    
       {/* heroSection */}
       <div
         id="hero"
@@ -239,7 +264,7 @@ export default function Home() {
               <div className="card-body">
                 <h5 className="card-title">{course.courseName}</h5>
                 <p className="card-text">{course.courseDescription}</p>
-                <a onClick={()=>{goto("/login");}} className="btn btn-primary">
+                <a onClick={()=>{goto("/user/course/"+course.id);}} className="btn btn-primary">
                   Go somewhere
                 </a>
               </div>
