@@ -87,18 +87,21 @@ export default function Home() {
               className="active"
               aria-current="true"
               aria-label="Slide 1"
+              style={{backgroundColor:'black'}}
             />
             <button
               type="button"
               data-bs-target="#carouselExampleCaptions"
               data-bs-slide-to={1}
               aria-label="Slide 2"
+              style={{backgroundColor:'red'}}
             />
             <button
               type="button"
               data-bs-target="#carouselExampleCaptions"
               data-bs-slide-to={2}
               aria-label="Slide 3"
+              style={{backgroundColor:'blue'}}
             />
           </div>
           <div className="carousel-inner">

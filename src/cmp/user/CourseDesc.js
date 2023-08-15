@@ -10,6 +10,8 @@ import { useParams } from 'react-router-dom';
 import CurrencyRupeeOutlinedIcon from '@mui/icons-material/CurrencyRupeeOutlined';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import DownloadIcon from '@mui/icons-material/Download';
+import Button from 'react-bootstrap/Button';
 
 
 
@@ -60,6 +62,7 @@ export default function CourseDesc() {
               setcourseDuration(response.data.response.courseDuration)
               setcertificateAvailable(response.data.response.certificateAvailable)
               setcourseDescription(response.data.response.courseDescription)
+              setFileName(response.data.response.fileName)
               
               
              
@@ -68,6 +71,7 @@ export default function CourseDesc() {
                   console.log(error);
               });
   }
+
   return (
     <>
       
@@ -115,6 +119,15 @@ export default function CourseDesc() {
         </div>
         
       </div>
+      {/* Dolwnloaded option */}
+      <Button variant="outline-dark" style={{marginLeft:"70px"}}><a href={'http://localhost:8080/images/' + fileName} download>
+       Download PDF <DownloadIcon/>
+      </a></Button>
+      
+      
+
+
+
       {/* Feedback form */}
 
       <div id="contactus" className="my-5 m-auto" style={{ backgroundColor: "lightgrey",width:"70vw" }}>

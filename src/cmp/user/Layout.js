@@ -46,7 +46,7 @@ export default function Layout() {
           fontSize: "1.5rem",
           position: "sticky",
           top: "-1px",
-          zIndex: "1",
+          zIndex: "2",
         }}
       >
         <nav className="navbar navbar-expand-lg ">
