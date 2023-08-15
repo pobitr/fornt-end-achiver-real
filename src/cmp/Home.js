@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import Navbar from './Navbar'
+import Video from "./VideoA";
 
 export default function Home() {
   const [noticeList, setnoticeList] = useState([]);
@@ -69,6 +70,7 @@ export default function Home() {
     <>
     <div>
       <Navbar/>
+      
 
       {/* heroSection */}
       <div
@@ -224,6 +226,7 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <Video/>
           {/* Courses Section */}
       <div id="courses" className="mt-5 text-center text-success">
         <h1 className="mb-5">Courses</h1>
