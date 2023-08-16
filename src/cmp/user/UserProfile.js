@@ -1,14 +1,16 @@
 import React from 'react';
 import user from "../images/userprofile.svg";
+import { getUserName } from "../../Service/common";
 
 
 export default function UserProfile() {
+
     return (
         <>
         
             <div className='bg-secondary-subtle d-flex justify-content-center align-items-center text-danger ' style={{ height: "10vh" }}>
                 {/* Give username */}
-                <h1>Welcome Username</h1>
+                <h1>Welcome To User Details</h1>
             </div>
 
             <div className='d-flex mt-3  justify-content-center align-items-center m-auto' style={{ width: "70vw" }}>
@@ -16,9 +18,9 @@ export default function UserProfile() {
                     <img className="border rounded-circle" src={user} style={{ width: "100%" }} />
                 </div>
                 <div className=' text-center mx-5 my-5'>
-                    <h2 className='text-primary'>Username</h2>
-                    <p style={{ fontSize: "1.3rem" }}>Usermail</p>
-                    <p style={{ fontSize: "1.3rem" }}>UserNumber</p>
+                    <h2 className='text-primary'>User Details</h2>
+                    <p style={{ fontSize: "1.3rem" }}>Usermail:{" "}{getUserName().response.userEmail}</p>
+                    <p style={{ fontSize: "1.3rem" }}>UserNumber:{" "}{getUserName().response.userPhone}</p>
                 </div>
             </div>
 

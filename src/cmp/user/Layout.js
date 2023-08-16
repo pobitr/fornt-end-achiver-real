@@ -86,7 +86,7 @@ export default function Layout() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={()=>{goto("/user/UserHome");}}
+                  <a className="nav-link" href="#notices"
                   style={{cursor:'pointer'}}>
                     <NotificationsNoneOutlinedIcon
                       style={{ marginBottom: "5px" }}
@@ -95,21 +95,21 @@ export default function Layout() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={()=>{goto("/user/UserHome");}}
+                  <a className="nav-link" href="#courses"
                   style={{cursor:'pointer'}}>
                     <AutoStoriesOutlinedIcon style={{ marginBottom: "5px" }} />{" "}
                     Courses
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={()=>{goto("/user/UserHome");}}
+                  <a className="nav-link" href="#about"
                   style={{cursor:'pointer'}}>
                     <InfoOutlinedIcon style={{ marginBottom: "5px" }} /> About
                     us
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={()=>{goto("/user/UserHome");}}
+                  <a className="nav-link" href="#contactus"
                   style={{cursor:'pointer'}}>
                     <ContactPageOutlinedIcon style={{ marginBottom: "5px" }} />{" "}
                     Contact us
