@@ -14,6 +14,7 @@ import { FaStar } from "react-icons/fa";
 import { getUserName } from "../../Service/common";
 import Rating from '@mui/material/Rating';
 import { Button } from 'react-bootstrap';
+import { Download } from '@mui/icons-material';
 
 export default function CourseDesc() {
   let { id } = useParams();
@@ -71,6 +72,7 @@ export default function CourseDesc() {
       setcourseDuration(response.data.response.courseDuration)
       setcertificateAvailable(response.data.response.certificateAvailable)
       setcourseDescription(response.data.response.courseDescription)
+      setFileName(response.data.response.fileName)
 
 
 
@@ -91,6 +93,7 @@ export default function CourseDesc() {
       console.log('response', response);
       if (response.data.success) {
           toast.success(response.data.message);
+          setRetText("");
           
           
          
@@ -158,7 +161,7 @@ export default function CourseDesc() {
           <button className='button buttonCD'>Join Course for free</button>
         </div>
       </div>
-
+    
       {/* Course duration and course fee */}
       <div className='d-flex m-auto border mt-5 bg-primary-subtle text-dark p-4 justify-content-around' style={{ width: "70vw" }}>
         <div className='d-flex gap-1 border'>
@@ -177,6 +180,11 @@ export default function CourseDesc() {
         </div>
 
       </div>
+      
+      <a href={"http://localhost:8080/images/" + fileName} download>
+    PDF Download
+      </a>
+      
       {/* Feedback form */}
       <div style={{ width: "70vw", margin: "auto", marginTop: "1.5rem", textAlign: "center" }}>
         <h2 style={{ color: "red" }}>Rate us</h2>

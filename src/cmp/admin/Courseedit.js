@@ -25,18 +25,20 @@ getData()
   const onSubmit = () => {
 
     var data = {
+      "id":id,
       "courseCode":courseCode,
       "courseName":courseName,
       "courseDuration":courseDuration,
       "certificateAvailable":certificateAvailable,
       "courseDescription":courseDescription,
+      "fileName":fileName
       
-      "fileName": fileName
+      
     }
     console.log(data)
 
 
-    axios.post('http://localhost:8080/api/course/addCourse', data).then(function (response) {
+    axios.post('http://localhost:8080/api/course/courseUpdate', data).then(function (response) {
       console.log('response', response);
       if (response.data.success) {
         toast.success(response.data.message);
@@ -45,7 +47,7 @@ getData()
         setcourseDuration('');
         setcertificateAvailable('');
         setcourseDescription('');
-        setFileName('');
+        
         
        
       }
