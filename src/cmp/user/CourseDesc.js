@@ -12,6 +12,8 @@ import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { FaStar } from "react-icons/fa";
 import { getUserName } from "../../Service/common";
+import Rating from '@mui/material/Rating';
+import { Button } from 'react-bootstrap';
 
 export default function CourseDesc() {
   let { id } = useParams();
@@ -29,11 +31,15 @@ export default function CourseDesc() {
   const [hoverValue, setHoverValue] = useState(undefined);
   const [showInput, setShowInput] = useState(false);
   const star = Array(5).fill(0);
+  const [getreview, setgetReview]=useState([])
+
 
   useEffect(() => {
     getCourse();
     getData();
+    
   }, [])
+
   const getCourse = () => {
     var data = {};
 
@@ -75,13 +81,54 @@ export default function CourseDesc() {
   }
   const getRat =()=>{
     var data ={
-      "rating":rating,
-      "retText":retText,
       "userName":getUserName().response.userName,
-      "courseName":courseCode
+      "courseName":courseCode,
+      "rating":rating,
+      "retText":retText
     }
     console.log(data);
+    axios.post('http://localhost:8080/api/review/addReview', data).then(function (response) {
+      console.log('response', response);
+      if (response.data.success) {
+          toast.success(response.data.message);
+          
+          
+         
+      }
+      else {
+          toast.error(response.data.message);
+      }
+  })
+      .catch(function (error) {
+          console.log(error);
+      });
 
+  }
+  
+ 
+  //
+  const getReview=()=>{
+    var data = {
+      courseName:courseCode
+    };
+    console.log(data);
+
+    axios
+      .post("http://localhost:8080/api/review/allReview", data)
+      .then(function (response) {
+        console.log("response", response);
+        if (response.data.success) {
+          toast.success(response.data.message);
+          setgetReview(response.data.response);
+          
+          
+        } else {
+          toast.error(response.data.message);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
   return (
     <>
@@ -184,9 +231,12 @@ export default function CourseDesc() {
       </div>
 
       {/* Review Table */}
+      
 
       <div className=' text-center mt-5 m-auto' style={{ width: "70vw" }}>
         <h1 className='text-danger'> Reviews by our Students</h1>
+        
+        <Button onClick={getReview} >Show How Many Students Are Comments</Button>
         <table className="table table-striped table-hover table-borderless mt-3">
           <thead className='table-dark'>
             <tr>
@@ -197,26 +247,20 @@ export default function CourseDesc() {
             </tr>
           </thead>
           <tbody>
+          {getreview.map((review, i) => (
             <tr>
-              <th scope="row">1</th>
-              <td>Wasiq</td>
-              <td>Nice course</td>
+              <th scope="row">{i+1}</th>
+              <td>{review.userName}</td>
+              <td>{review.retText}</td>
               <td>
                 <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}>
-                {star.map((star, i) => {
-                  return (
-                    <div>
-                      <FaStar
-                        size={40}
-                        style={styles.star}
-                        color={rating > i ? "orange" : "grey"}
-                      />
-                    </div>
-                  )
-                })}
+                
+                <Rating name="size-large" value={review.rating} readOnly size="large"  />
+                    
                 </div>
               </td>
             </tr>
+          ))}
 
           </tbody>
         </table>
