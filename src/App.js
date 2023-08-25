@@ -18,7 +18,7 @@ import Noticeedit from "./cmp/admin/Noticeedit";
 import Loader from "./cmp/Loader";
 import { useEffect, useState } from "react";
 import Review from "./cmp/admin/Review";
-import DownloadeCount from "./cmp/admin/DownloadeCount";
+
 import Userslist from "./cmp/admin/Userslist";
 import Courseedit from "./cmp/admin/Courseedit";
 import ErrorPage from "./cmp/ErrorPage";
@@ -105,7 +105,7 @@ function App() {
             <Route path="noticelist" element={<Noticelist />} />
             <Route path="noticeedit/:id" element={<Noticeedit />} />
             <Route path="review" element={<Review />} />
-            <Route path="Downloadcount" element={<DownloadeCount/>} />
+            
           </Route>
           <Route path="*" element={<ErrorPage/>}/>
         </Routes>

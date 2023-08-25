@@ -11,6 +11,7 @@ export default function Userlogin() {
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
     const [showPassword,setShowPassword] = useState(false);
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     useEffect(()=>{
         if (localStorage.getItem("user-info")) {
             navigate("/user/UserHome");
@@ -30,6 +31,15 @@ export default function Userlogin() {
     }
 
     const onSubmit =()=>{
+        if (email.trim()) {
+            if (!email.trim().match(mailformat)) {
+              toast.error("Please Enter Email special characters mail formate (xxxx@.xxxxx.com) !", {
+                position: toast.POSITION.BOTTOM_CENTER
+              });
+            return false;
+           }
+          }
+
         if (username == '') {
             toast.error("Please Enter Email !", {
                 position: toast.POSITION.BOTTOM_CENTER

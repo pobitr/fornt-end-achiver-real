@@ -35,7 +35,7 @@ export default function Home() {
     axios
       .post("http://localhost:8080/api/notice/allNotice", data)
       .then(function (response) {
-        console.log("response", response);
+        // console.log("response", response);
         if (response.data.success) {
           // toast.success(response.data.message);
           setnoticeList(response.data.response);
@@ -54,7 +54,7 @@ export default function Home() {
     axios
       .post("http://localhost:8080/api/course/allcourse", data)
       .then(function (response) {
-        console.log("response", response);
+        // console.log("response", response);
         if (response.data.success) {
           // toast.success(response.data.message);
           setcourseList(response.data.response);

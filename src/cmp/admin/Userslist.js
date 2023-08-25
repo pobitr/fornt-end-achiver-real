@@ -1,34 +1,26 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import { randomTraderName, randomEmail } from '@mui/x-data-grid-generator';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import { ToastContainer, toast } from "react-toastify";
+import axios from 'axios';
+
 
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 80 },
-  { field: 'name', headerName: 'Name', width: 150 },
-  { field: 'email', headerName: 'Email', width: 150 },
-  { field: 'phone', headerName: 'Phone', },
-  { field: 'age', headerName: 'Age', type: 'number',  },
-  { field: 'password', headerName: 'Password', type:'text', width: 150 },
+  { field: 'userName', headerName: 'Name', width: 150 },
+  { field: 'userEmail', headerName: 'Email', width: 150 },
+  { field: 'userPhone', headerName: 'Phone', width:150 },
+  { field: 'userAge', headerName: 'Age', type: 'number',  },
+  { field: 'UserPassword', headerName: 'Password', type:'text', width: 150 },
 ];
 
-const rows = [
-  { id: 1, name: randomTraderName(), email: randomEmail(), phone:99338274, age: 25 },
-  { id: 2, name: randomTraderName(), email: randomEmail(), phone:99338274,age: 36 },
-  { id: 3, name: randomTraderName(), email: randomEmail(), phone:99338274,age: 19 },
-  { id: 4, name: randomTraderName(), email: randomEmail(), phone:99338274,age: 28 },
-  { id: 5, name: randomTraderName(), email: randomEmail(), phone:99338274,age: 23 },
-  { id: 6, name: randomTraderName(), email: randomEmail(), phone:99338274,age: 27 },
-  { id: 7, name: randomTraderName(), email: randomEmail(), phone:99338274,age: 18 },
-  { id: 8, name: randomTraderName(), email: randomEmail(), phone:99338274,age: 31 },
-  { id: 9, name: randomTraderName(), email: randomEmail(), phone:99338274,age: 24 },
-  { id: 10, name: randomTraderName(),email: randomEmail(), phone:99338274,age: 35 },
-];
+
 
 export default function Userslist() {
+  const [rows, setRows]=React.useState([])
   const [filterModel, setFilterModel] = React.useState({
     items: [],
     quickFilterExcludeHiddenColumns: true,
@@ -36,6 +28,31 @@ export default function Userslist() {
   });
 
   const [columnVisibilityModel, setColumnVisibilityModel] = React.useState({});
+
+  React.useEffect(()=>{
+    getData()
+  },[])
+
+  const getData = () => {
+    var data = {};
+
+    axios
+      .post("http://localhost:8080/api/user/allUser", data)
+      .then(function (response) {
+        console.log("response", response);
+        if (response.data.success) {
+          toast.success(response.data.message);
+          setRows(response.data.response);
+        } else {
+          toast.error(response.data.message);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  
+  
 
   return (
     <Box sx={{ width: 1 }}>
@@ -74,6 +91,7 @@ export default function Userslist() {
           }
         />
       </Box>
+      <ToastContainer/>
     </Box>
   );
 }

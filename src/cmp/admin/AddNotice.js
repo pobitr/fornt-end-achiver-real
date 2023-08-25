@@ -12,6 +12,19 @@ export default function AddNotice() {
 
                               // write logic to send data to the database in the below function
   const onSubmit=()=>{
+    if (noticeTitle == '') {
+      toast.error("Please Enter Notice Heading !", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    return false;
+    }
+    if (noticeDesc=='') {
+      toast.error("Please Enter Notice Des.... !", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    return false;
+      
+    }
     var data={
         "noticeTitle":noticeTitle,
         "noticeDesc":noticeDesc
@@ -43,7 +56,7 @@ export default function AddNotice() {
           <tbody>
             <tr >
               <td className="formTableDetail">
-                <label style={{ marginTop: "3px" }}>Notice Title</label>
+                <label style={{ marginTop: "3px" }}>Notice Heading</label>
               </td>
             </tr>
             <tr>

@@ -14,6 +14,7 @@ export default function Signup() {
   const [age, setAge] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
   useEffect(() => {
     setName("");
@@ -37,6 +38,26 @@ export default function Signup() {
   };
 
   const onSubmit = () => {
+    if (email.trim()) {
+      if (!email.trim().match(mailformat)) {
+        toast.error("Please Enter Email special characters mail formate (xxxx@.xxxxx.com) !", {
+          position: toast.POSITION.BOTTOM_CENTER
+        });
+      return false;
+     }
+    }
+    if (phone.length<10 || phone.length>10) {
+      toast.error("Please Enter Phone Number 10 Digits !", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    return false;
+    }
+    if (confirm.length>6) {
+      toast.error("Please Enter Password 6 to 12 digits!", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    return false;
+    }
     if (name == '') {
       toast.error("Please Enter Name !", {
         position: toast.POSITION.BOTTOM_CENTER
@@ -133,6 +154,7 @@ export default function Signup() {
                 onChange={(e) => {
                   setPhone(e.target.value);
                 }}
+                maxLength={10}
               />
               <label htmlFor>Phone</label>
             </div>
@@ -156,7 +178,7 @@ export default function Signup() {
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
-                maxLength={6}
+                maxLength={12}
               />
               <label htmlFor>Create a password</label>
               <div className="show">
@@ -181,6 +203,7 @@ export default function Signup() {
                 onChange={(e) => {
                   setConfirm(e.target.value);
                 }}
+                maxLength={12}
               />
               <label htmlFor>Confirm password</label>
             </div>

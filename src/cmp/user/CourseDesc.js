@@ -25,6 +25,7 @@ export default function CourseDesc() {
   const [certificateAvailable, setcertificateAvailable] = useState('');
   const [courseDescription, setcourseDescription] = useState('');
   const [fileName, setFileName] = useState('');
+  const [pdfFileName, setpdfFileName] = useState("");
   // State var for controlling feedbackform
   const [userName,setUserName]=useState('');
   const [retText, setRetText]=useState('');
@@ -73,6 +74,7 @@ export default function CourseDesc() {
       setcertificateAvailable(response.data.response.certificateAvailable)
       setcourseDescription(response.data.response.courseDescription)
       setFileName(response.data.response.fileName)
+      setpdfFileName(response.data.response.pdfFileName)
 
 
 
@@ -93,10 +95,9 @@ export default function CourseDesc() {
       console.log('response', response);
       if (response.data.success) {
           toast.success(response.data.message);
-          setRetText("");
-          
-          
-         
+          setRating("");
+          setRetText('')
+          setShowInput(false);
       }
       else {
           toast.error(response.data.message);
@@ -181,9 +182,9 @@ export default function CourseDesc() {
 
       </div>
       
-      <a href={"http://localhost:8080/images/" + fileName} download>
+      {/* <a href={"http://localhost:8080/images/" + pdfFileName} download>
     PDF Download
-      </a>
+      </a> */}
       
       {/* Feedback form */}
       <div style={{ width: "70vw", margin: "auto", marginTop: "1.5rem", textAlign: "center" }}>

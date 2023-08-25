@@ -67,7 +67,7 @@ export default function Noticelist() {
         <thead>
           <tr>
             <th>#</th>
-            <th>Notice Name</th>
+            <th>Notice Heading</th>
             <th>Notice Details</th>
             <th>Post Time</th>
             <th>Actions</th>

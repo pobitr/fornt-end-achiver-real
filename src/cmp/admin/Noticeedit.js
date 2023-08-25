@@ -6,58 +6,67 @@ import { ToastContainer, toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 
 const Noticeedit = () => {
-  let {id}= useParams()
-  const [notice, setNotice]=useState('');
+  let { id } = useParams();
+  const [notice, setNotice] = useState("");
   const [noticeTitle, setNoticeTitle] = useState("");
   const [noticeDesc, setNoticeDesc] = useState("");
 
-  useEffect(()=>{
-    getData()
-
-  },[])
+  useEffect(() => {
+    getData();
+  }, []);
 
   const onSubmit = () => {
-    var data = {
-      "id":id,
-      "noticeTitle":noticeTitle,
-      "noticeDesc":noticeDesc
-      
-  }
-  console.log(data)
-   
-  axios.post('http://localhost:8080/api/notice/noticeUpdate', data).then(function (response) {
-      console.log('response', response);
-      if (response.data.success) {
-          toast.success(response.data.message);
-         
-      }
-      else {
-          toast.error(response.data.message);
-      }
-  })
-      .catch(function (error) {
-          console.log(error);
+    if (noticeTitle == '') {
+      toast.error("Please Enter Notice Heading !", {
+        position: toast.POSITION.BOTTOM_CENTER
       });
+    return false;
+    }
+    if (noticeDesc == '') {
+      toast.error("Please Enter Notice Des.... !", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    return false;
+      
+    }
+    var data = {
+      id: id,
+      noticeTitle: noticeTitle,
+      noticeDesc: noticeDesc,
+    };
+    console.log(data);
 
-
+    axios
+      .post("http://localhost:8080/api/notice/noticeUpdate", data)
+      .then(function (response) {
+        console.log("response", response);
+        if (response.data.success) {
+          toast.success(response.data.message);
+        } else {
+          toast.error(response.data.message);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
-  const getData =()=>{
+  const getData = () => {
     var data = {
-      "id":id
-    }
-    axios.post('http://localhost:8080/api/notice/noticeDetails', data).then(function (response) {
-              console.log('response', response);
-              setNotice(response.data.response)
-              setNoticeTitle(response.data.response.noticeTitle)
-              setNoticeDesc(response.data.response.noticeDesc)
-              
-             
-          })
-              .catch(function (error) {
-                  console.log(error);
-              });
-  }
+      id: id,
+    };
+    axios
+      .post("http://localhost:8080/api/notice/noticeDetails", data)
+      .then(function (response) {
+        console.log("response", response);
+        setNotice(response.data.response);
+        setNoticeTitle(response.data.response.noticeTitle);
+        setNoticeDesc(response.data.response.noticeDesc);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   return (
     <>
       <div>
@@ -75,7 +84,7 @@ const Noticeedit = () => {
             <tbody>
               <tr>
                 <td className="formTableDetail">
-                  <label style={{ marginTop: "3px" }}>Notice Title</label>
+                  <label style={{ marginTop: "3px" }}>Notice Heading</label>
                 </td>
               </tr>
               <tr>
@@ -85,7 +94,7 @@ const Noticeedit = () => {
                     required
                     id="outlined-required2"
                     label="Course Name"
-                    value={ noticeTitle }
+                    value={noticeTitle}
                     onChange={(e) => {
                       setNoticeTitle(e.target.value);
                     }}
