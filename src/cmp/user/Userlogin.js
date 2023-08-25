@@ -31,8 +31,8 @@ export default function Userlogin() {
     }
 
     const onSubmit =()=>{
-        if (email.trim()) {
-            if (!email.trim().match(mailformat)) {
+        if (username.trim()) {
+            if (!username.trim().match(mailformat)) {
               toast.error("Please Enter Email special characters mail formate (xxxx@.xxxxx.com) !", {
                 position: toast.POSITION.BOTTOM_CENTER
               });
