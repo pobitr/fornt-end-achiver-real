@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../Navbar.js";
+import { userLog } from "../../Service/userAuth";
 
 export default function Userlogin() {
     const [username,setUsername] = useState("");
@@ -56,23 +57,19 @@ export default function Userlogin() {
             userEmail:username,
             UserPassword:password
         }
-        console.log(data);
-        axios
-        .post("http://localhost:8080/api/user/userLogin", data)
-        .then(function (response) {
-          console.log("response", response);
-          if (response.data.success) {
-            toast.success(response.data.message);
-            localStorage.setItem("user-info", JSON.stringify(response.data));
+        
+        userLog(data).then(result=>{
+          if (result.data.success) {
+            toast.success(result.data.message);
+            localStorage.setItem("user-info", JSON.stringify(result.data));
             navigate("/user/UserHome");
 
           } else {
-            toast.error(response.data.message);
+            toast.error(result.data.message);
           }
+
         })
-        .catch(function (error) {
-          console.log(error);
-        });
+        
     }
     return (
         <>

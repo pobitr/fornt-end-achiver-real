@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../Navbar.js";
+import { userSignup } from "../../Service/userAuth";
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -100,21 +101,15 @@ export default function Signup() {
     if (password !== confirm) {
       alert("Passwords don't match !!");
     } else {
-      console.log(data);
-      axios
-        .post("http://localhost:8080/api/user/addUser", data)
-        .then(function (response) {
-          console.log("response", response);
-          if (response.data.success) {
-            toast.success(response.data.message);
-            navigate("/login");
-          } else {
-            toast.error(response.data.message);
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      userSignup(data).then(result=>{
+        if (result.data.success) {
+          toast.success(result.data.message);
+          navigate("/login");
+        } else {
+          toast.error(result.data.message);
+        }
+
+      })
     }
   };
   return (

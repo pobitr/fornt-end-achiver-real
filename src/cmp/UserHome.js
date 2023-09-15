@@ -10,6 +10,7 @@ import slider3 from "./images/slider3.png";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import { getAllCourse, getAllNotice } from "../Service/homeService";
 
 export default function UserHome() {
   const [noticeList, setnoticeList] = useState([]);
@@ -40,42 +41,18 @@ export default function UserHome() {
   };
 
   const getNotice = () => {
-    var data = {};
-
-    axios
-      .post("http://localhost:8080/api/notice/allNotice", data)
-      .then(function (response) {
-        // console.log("response", response);
-        if (response.data.success) {
-          // toast.success(response.data.message);
-          setnoticeList(response.data.response);
-        } else {
-          toast.error(response.data.message);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+    var data = {}
+    getAllNotice(data).then(result => {
+      setnoticeList(result.data.response)
+    })
+  }
 
   const getCourse = () => {
-    var data = {};
-
-    axios
-      .post("http://localhost:8080/api/course/allcourse", data)
-      .then(function (response) {
-        // console.log("response", response);
-        if (response.data.success) {
-          // toast.success(response.data.message);
-          setcourseList(response.data.response);
-        } else {
-          toast.error(response.data.message);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+    var data = {}
+    getAllCourse(data).then(result=>{
+      setcourseList(result.data.response)
+    })
+  }
   return (
     <>
       <div>

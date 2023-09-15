@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { adminLog } from '../Service/adminService';
 
 
 
@@ -61,36 +62,28 @@ export default function Adminlogin() {
             password: password,
         };
 
-        console.log(data);
+        adminLog(data).then(result=>{
+            if (result.data.success) {
+                toast.success('Login Successful', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Flip
+                });
+                // toast.success(result.data.message);
+                localStorage.setItem("admin-info", JSON.stringify(result.data));
+                navigate("/dashboard/dashboardhome");
+            } else {
+                toast.error(result.data.message);
+            }
+        })
 
-        axios
-            .post("http://localhost:8080/api/admin/login", data)
-            .then(function (response) {
-                console.log('response',response);
-                
-                if (response.data.success) {
-                    toast.success('Login Successful', {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                        transition: Flip
-                    });
-                    // toast.success(response.data.message);
-                    localStorage.setItem("admin-info", JSON.stringify(response.data));
-                    navigate("/dashboard/dashboardhome");
-                } else {
-                    toast.error(response.data.message);
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
+       
 
 
     };

@@ -15,6 +15,8 @@ import { getUserName } from "../../Service/common";
 import Rating from '@mui/material/Rating';
 import { Button } from 'react-bootstrap';
 import { Download } from '@mui/icons-material';
+import { addDescRetData, getDescData, getDescRetData } from '../../Service/courseDesService';
+import { getAllCourse } from '../../Service/homeService';
 
 export default function CourseDesc() {
   let { id } = useParams();
@@ -44,44 +46,24 @@ export default function CourseDesc() {
 
   const getCourse = () => {
     var data = {};
-
-    axios
-      .post("http://localhost:8080/api/course/allcourse", data)
-      .then(function (response) {
-        console.log("response", response);
-        if (response.data.success) {
-          // toast.success(response.data.message);
-          setcourseList(response.data.response);
-        } else {
-          toast.error(response.data.message);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+    getAllCourse(data).then(result=>{
+      setcourseList(result.data.response)
+    })
+  }
   //
   const getData = () => {
     var data = {
       "id": id
     }
-    axios.post('http://localhost:8080/api/course/courseDetails', data).then(function (response) {
-      console.log('response', response);
-
-      setcourseCode(response.data.response.courseCode)
-      setcourseName(response.data.response.courseName)
-      setcourseDuration(response.data.response.courseDuration)
-      setcertificateAvailable(response.data.response.certificateAvailable)
-      setcourseDescription(response.data.response.courseDescription)
-      setFileName(response.data.response.fileName)
-      setpdfFileName(response.data.response.pdfFileName)
-
-
-
+    getDescData(data).then(result=>{
+      setcourseCode(result.data.response.courseCode)
+      setcourseName(result.data.response.courseName)
+      setcourseDuration(result.data.response.courseDuration)
+      setcertificateAvailable(result.data.response.certificateAvailable)
+      setcourseDescription(result.data.response.courseDescription)
+      setFileName(result.data.response.fileName)
+      setpdfFileName(result.data.response.pdfFileName)
     })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
   const getRat =()=>{
     var data ={
@@ -90,23 +72,17 @@ export default function CourseDesc() {
       "rating":rating,
       "retText":retText
     }
-    console.log(data);
-    axios.post('http://localhost:8080/api/review/addReview', data).then(function (response) {
-      console.log('response', response);
-      if (response.data.success) {
-          toast.success(response.data.message);
-          setRating("");
-          setRetText('')
-          setShowInput(false);
-      }
-      else {
-          toast.error(response.data.message);
-      }
-  })
-      .catch(function (error) {
-          console.log(error);
-      });
-
+    addDescRetData(data).then(result=>{
+      if (result.data.success) {
+        toast.success(result.data.message);
+        setRating("");
+        setRetText('')
+        setShowInput(false);
+    }
+    else {
+        toast.error(result.data.message);
+    }
+    })
   }
   
  
@@ -116,23 +92,9 @@ export default function CourseDesc() {
       courseName:courseCode
     };
     console.log(data);
-
-    axios
-      .post("http://localhost:8080/api/review/allReview", data)
-      .then(function (response) {
-        console.log("response", response);
-        if (response.data.success) {
-          toast.success(response.data.message);
-          setgetReview(response.data.response);
-          
-          
-        } else {
-          toast.error(response.data.message);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    getDescRetData(data).then(result=>{
+      setgetReview(result.data.response)
+    })
   }
   return (
     <>
