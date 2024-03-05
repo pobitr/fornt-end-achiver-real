@@ -90,10 +90,7 @@ export default function Home() {
                 alt="..."
               />
               <div className="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>
-                  Some representative placeholder content for the first slide.
-                </p>
+                
               </div>
             </div>
             <div className="carousel-item" style={{ height: "70vh" }}>
@@ -104,10 +101,7 @@ export default function Home() {
                 alt="..."
               />
               <div className="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>
-                  Some representative placeholder content for the second slide.
-                </p>
+                
               </div>
             </div>
             <div className="carousel-item" style={{ height: "70vh" }}>
@@ -118,10 +112,7 @@ export default function Home() {
                 alt="..."
               />
               <div className="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>
-                  Some representative placeholder content for the third slide.
-                </p>
+                
               </div>
             </div>
           </div>
@@ -218,6 +209,8 @@ export default function Home() {
                 src={"http://localhost:8080/images/" + course.fileName}
                 className="card-img-top"
                 alt="..."
+                height={200}
+                width={400}
               />
               <div className="card-body">
                 <h5 className="card-title">{course.courseName}</h5>
@@ -237,7 +230,7 @@ export default function Home() {
         style={{ backgroundColor: "lightgrey" }}
       >
         <h1 className="text-center text-success mb-5">Contact us</h1>
-        <form>
+        <form >
         <div className="d-flex justify-content-center flex-wrap">
           <div className="form-container mb-5" style={{ width: "55vw" }}>
             <label htmlFor="name">Name:</label>
@@ -250,7 +243,7 @@ export default function Home() {
           </div>
           
 
-          <div style={{ width: "40vw" }}>
+          <div style={{ width: "40vw" }} className="formimg">
             <img src={contact} style={{ width: "90%", height: "100%" }}></img>
           </div>
         </div>

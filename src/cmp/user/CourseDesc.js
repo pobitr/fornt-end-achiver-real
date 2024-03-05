@@ -188,6 +188,8 @@ export default function CourseDesc() {
                 src={"http://localhost:8080/images/" + course.fileName}
                 className="card-img-top"
                 alt="..."
+                height={200}
+                width={400}
               />
               <div className="card-body">
                 <h5 className="card-title">{course.courseName}</h5>

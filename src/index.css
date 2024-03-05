@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 code {
@@ -361,5 +362,14 @@ code {
   font-size: 1.5rem;
 }
 
+@media only screen and (max-width : 390px) {
+  /* Styles */
 
-  
+  .aboutus img{
+    display: none;
+  }
+
+  .formimg{
+    display: none;
+  }
+  }
