@@ -93,7 +93,7 @@ export default function Addcourses() {
       // reader.readAsDataURL(file[0])
       const fileData = new FormData();
       fileData.append("file", file[0]);
-      fetch(BASE_URL + "/api" + "/upload", {
+      fetch(BASE_URL+"/api"  + "/upload", {
         method: "POST",
         body: fileData,
       })
