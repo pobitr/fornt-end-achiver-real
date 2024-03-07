@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import Table from 'react-bootstrap/Table';
 import { ToastContainer, toast } from "react-toastify";
 import axios from 'axios';
+import { adminAllRate } from '../../Service/adminService';
 
 export default function Review() {
   const [review, setReview]=useState([])
@@ -14,22 +15,19 @@ export default function Review() {
   //
   const getReview=()=>{
     var data = {};
-    axios
-      .post("http://localhost:8080/api/review/allAdminReview", data)
-      .then(function (response) {
-        console.log("response", response);
-        if (response.data.success) {
-          toast.success(response.data.message);
-          setReview(response.data.response);
+     adminAllRate(data)
+      .then(result=>{
+        // console.log("response", result);
+        if (result.data.success) {
+          toast.success(result.data.message);
+          setReview(result.data.response);
           
           
         } else {
-          toast.error(response.data.message);
+          toast.error(result.data.message);
         }
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      
   }
 
 

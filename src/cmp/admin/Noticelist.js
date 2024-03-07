@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import { adminNoticeAll, adminNoticeDelate } from "../../Service/adminService";
 
 export default function Noticelist() {
   const navigate = useNavigate();
@@ -24,41 +25,35 @@ export default function Noticelist() {
   const getNotice = () => {
     var data = {};
 
-    axios
-      .post("http://localhost:8080/api/notice/allNotice", data)
-      .then(function (response) {
-        console.log("response", response);
-        if (response.data.success) {
-          toast.success(response.data.message);
-          setnoticeList(response.data.response);
+     adminNoticeAll(data)
+      .then(result=> {
+        // console.log("response", result);
+        if (result.data.success) {
+          toast.success(result.data.message);
+          setnoticeList(result.data.response);
         } else {
-          toast.error(response.data.message);
+          toast.error(result.data.message);
         }
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      
   };
 
   const onDelete = (id) => {
     var data = {
       id: id,
     };
-    axios
-      .post("http://localhost:8080/api/notice/noticeDelete", data)
-      .then(function (response) {
-        console.log("response", response);
-        if (response.data.success) {
-          toast.success(response.data.message);
+     adminNoticeDelate(data)
+      .then(result=> {
+        // console.log("response", result);
+        if (result.data.success) {
+          toast.success(result.data.message);
           getNotice();
           setShow(false);
         } else {
-          toast.error(response.data.message);
+          toast.error(result.data.message);
         }
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      
   };
   return (
     <div>

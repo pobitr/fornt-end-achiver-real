@@ -4,6 +4,10 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useParams } from "react-router-dom";
+import {
+  adminNoticeDelete,
+  adminNoticeUpdate,
+} from "../../Service/adminService";
 
 const Noticeedit = () => {
   let { id } = useParams();
@@ -16,56 +20,46 @@ const Noticeedit = () => {
   }, []);
 
   const onSubmit = () => {
-    if (noticeTitle == '') {
+    if (noticeTitle == "") {
       toast.error("Please Enter Notice Heading !", {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.BOTTOM_CENTER,
       });
-    return false;
+      return false;
     }
-    if (noticeDesc == '') {
+    if (noticeDesc == "") {
       toast.error("Please Enter Notice Des.... !", {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.BOTTOM_CENTER,
       });
-    return false;
-      
+      return false;
     }
     var data = {
       id: id,
       noticeTitle: noticeTitle,
       noticeDesc: noticeDesc,
     };
-    console.log(data);
+    // console.log(data);
 
-    axios
-      .post("http://localhost:8080/api/notice/noticeUpdate", data)
-      .then(function (response) {
-        console.log("response", response);
-        if (response.data.success) {
-          toast.success(response.data.message);
-        } else {
-          toast.error(response.data.message);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    adminNoticeUpdate(data).then((result) => {
+      // console.log("response", result);
+      if (result.data.success) {
+        toast.success(result.data.message);
+      } else {
+        toast.error(result.data.message);
+      }
+    });
   };
 
   const getData = () => {
     var data = {
       id: id,
     };
-    axios
-      .post("http://localhost:8080/api/notice/noticeDetails", data)
-      .then(function (response) {
-        console.log("response", response);
-        setNotice(response.data.response);
-        setNoticeTitle(response.data.response.noticeTitle);
-        setNoticeDesc(response.data.response.noticeDesc);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+
+    adminNoticeDelete(data).then((result) => {
+      // console.log("response", result);
+      setNotice(result.data.response);
+      setNoticeTitle(result.data.response.noticeTitle);
+      setNoticeDesc(result.data.response.noticeDesc);
+    });
   };
   return (
     <>

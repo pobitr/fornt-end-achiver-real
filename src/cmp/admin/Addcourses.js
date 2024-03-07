@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { adminCourseAdd } from "../../Service/adminService";
 
 export default function Addcourses() {
   const [courseCode, setcourseCode] = useState("");
@@ -12,44 +13,43 @@ export default function Addcourses() {
   const [certificateAvailable, setcertificateAvailable] = useState("");
   const [courseDescription, setcourseDescription] = useState("");
   const [fileName, setFileName] = useState("");
-  
 
   const onSubmit = () => {
-    if (courseCode=='') {
+    if (courseCode == "") {
       toast.error("Please Enter Course Code !", {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.BOTTOM_CENTER,
       });
-    return false;
+      return false;
     }
-    if (courseName=='') {
+    if (courseName == "") {
       toast.error("Please Enter Course Name !", {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.BOTTOM_CENTER,
       });
-    return false;
+      return false;
     }
-    if (courseDuration) {
+    if (courseDuration == "") {
       toast.error("Please Enter Course Duration !", {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.BOTTOM_CENTER,
       });
-    return false;
+      return false;
     }
-    if (certificateAvailable=='') {
+    if (certificateAvailable == "") {
       toast.error("Please Enter Course certificate available !", {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.BOTTOM_CENTER,
       });
-    return false;
+      return false;
     }
-    if (courseDescription=='') {
+    if (courseDescription == "") {
       toast.error("Please Enter Course Description !", {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.BOTTOM_CENTER,
       });
-    return false;
+      return false;
     }
-    if (fileName=='') {
+    if (fileName == "") {
       toast.error("Please Enter Course Image !", {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.BOTTOM_CENTER,
       });
-    return false;
+      return false;
     }
     var data = {
       courseCode: courseCode,
@@ -62,25 +62,20 @@ export default function Addcourses() {
     };
     console.log(data);
 
-    axios
-      .post("http://localhost:8080/api/course/addCourse", data)
-      .then(function (response) {
-        console.log("response", response);
-        if (response.data.success) {
-          toast.success(response.data.message);
-          setcourseCode("");
-          setcourseName("");
-          setcourseDuration("");
-          setcertificateAvailable("");
-          setcourseDescription("");
-          setFileName("");
-        } else {
-          toast.error(response.data.message);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    adminCourseAdd(data).then((result) => {
+      // console.log("response", result);
+      if (result.data.success) {
+        toast.success(result.data.message);
+        setcourseCode("");
+        setcourseName("");
+        setcourseDuration("");
+        setcertificateAvailable("");
+        setcourseDescription("");
+        setFileName("");
+      } else {
+        toast.error(result.data.message);
+      }
+    });
   };
 
   function showUpload() {
@@ -112,11 +107,9 @@ export default function Addcourses() {
         });
     }
   }
-  
+
   return (
     <>
-    
-    
       <div style={{ margin: "auto", width: "60%", padding: "10px" }}>
         <h1>Add Course</h1>
         <hr />
@@ -214,7 +207,6 @@ export default function Addcourses() {
                 Image Upload
               </Button>
             </Form.Group>
-           
           </div>
           <hr />
           <Button

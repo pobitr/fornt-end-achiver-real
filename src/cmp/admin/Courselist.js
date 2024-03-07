@@ -5,6 +5,8 @@ import { ToastContainer, toast } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { adminCourseAll, adminCourseDelate } from "../../Service/adminService";
+import { BASE_URL } from "../urlConfig/Url";
 
 export default function Courselist() {
   const [show, setShow] = useState(false);
@@ -26,41 +28,33 @@ export default function Courselist() {
   const getNotice = () => {
     var data = {};
 
-    axios
-      .post("http://localhost:8080/api/course/allcourse", data)
-      .then(function (response) {
-        console.log("response", response);
-        if (response.data.success) {
-          toast.success(response.data.message);
-          setcourseList(response.data.response);
-        } else {
-          toast.error(response.data.message);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    adminCourseAll(data).then((result) => {
+      console.log("response", result);
+      if (result.data.success) {
+        toast.success(result.data.message);
+        setcourseList(result.data.response);
+      } else {
+        toast.error(result.data.message);
+      }
+    });
   };
 
   const onDelete = (id) => {
     var data = {
       id: id,
     };
-    axios
-      .post("http://localhost:8080/api/course/courseDelete", data)
-      .then(function (response) {
-        console.log("response", response);
-        if (response.data.success) {
-          toast.success(response.data.message);
+    adminCourseDelate(data)
+      .then(result=> {
+        console.log("response", result);
+        if (result.data.success) {
+          toast.success(result.data.message);
           getNotice();
           setShow(false);
         } else {
-          toast.error(response.data.message);
+          toast.error(result.data.message);
         }
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      
   };
   return (
     <div>
@@ -87,7 +81,7 @@ export default function Courselist() {
               <td>{course.courseDescription}</td>
               <td>
                 <img
-                  src={"http://localhost:8080/images/" + course.fileName}
+                  src={BASE_URL+"/images/" + course.fileName}
                   style={{ width: "40px", heigh: "40px" }}
                 ></img>
               </td>

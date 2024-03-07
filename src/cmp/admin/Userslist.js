@@ -5,6 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { ToastContainer, toast } from "react-toastify";
 import axios from 'axios';
+import { adminAllUser } from '../../Service/adminService';
 
 
 
@@ -36,20 +37,17 @@ export default function Userslist() {
   const getData = () => {
     var data = {};
 
-    axios
-      .post("http://localhost:8080/api/user/allUser", data)
-      .then(function (response) {
-        console.log("response", response);
-        if (response.data.success) {
-          toast.success(response.data.message);
-          setRows(response.data.response);
+    adminAllUser(data)
+      .then(result=> {
+        // console.log("response", result);
+        if (result.data.success) {
+          toast.success(result.data.message);
+          setRows(result.data.response);
         } else {
-          toast.error(response.data.message);
+          toast.error(result.data.message);
         }
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+     
   }
   
   

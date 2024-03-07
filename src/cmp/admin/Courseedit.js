@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useParams } from "react-router-dom";
+import { BASE_URL } from "../urlConfig/Url";
 
 export default function Courseedit() {
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function Courseedit() {
     console.log(data);
 
     axios
-      .post("http://localhost:8080/api/course/courseUpdate", data)
+      .post(BASE_URL+"/api/course/courseUpdate", data)
       .then(function (response) {
         console.log("response", response);
         if (response.data.success) {
@@ -76,7 +77,7 @@ export default function Courseedit() {
       // reader.readAsDataURL(file[0])
       const fileData = new FormData();
       fileData.append("file", file[0]);
-      fetch("http://localhost:8080/api" + "/upload", {
+      fetch(BASE_URL+"/api" + "/upload", {
         method: "POST",
         body: fileData,
       })
@@ -98,7 +99,7 @@ export default function Courseedit() {
       id: id,
     };
     axios
-      .post("http://localhost:8080/api/course/courseDetails", data)
+      .post(BASE_URL+"/api/course/courseDetails", data)
       .then(function (response) {
         console.log("response", response);
         setCourse(response.data.response);
