@@ -361,9 +361,101 @@ code {
   width:50%;
   font-size: 1.5rem;
 }
+.aboutus{
+  width: 60vw;
+}
 
+#notices{
+  width: 20vw;
+  height: 40vh;
+  overflow-y: scroll;
+}
+#formEL{
+  width: 55vw;
+}
+#carouselEl{
+  height: 70vh;
+}
+#descriptonabute{
+  gap: 5rem;
+   width: 100%;
+}
+.descImg{
+  width: 30%;
+}
+#descaling{
+  width: 100%;
+}
+.descReateEl{
+  width: 70vw;
+}
 @media only screen and (max-width : 390px) {
+  .descReateEl{
+    width: 100%;
+  }
+  .buttonCD{
+    width:100%;
+    font-size: 1.5rem;
+  }
+  #descaling{
+ width: 325px;
+  }
+  .descImg{
+    width: 80%;
+  }
+  #descriptonabute{
+    gap: 5rem;
+      display: flex;
+      width: 100%;
+      flex-direction: column-reverse;
+      flex-wrap: wrap;
+      align-content: center;
+      align-items: center;
+  }
+  .wrapper{
+    background-color: rgb(255, 255, 255);
+    width:88vw;
+    box-shadow: 0px 10px 8px rgb(0,0,0,0.2);
+    border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+    /* Login form design start */
+
+    
+  .body img{
+    display: none;
+  }
   /* Styles */
+  #carouselEl{
+    height: 30vh;
+  }
+  #formEL{
+    width: 81vw;
+  }
+  #notices{
+    width: 88vw;
+    height: 40vh;
+    overflow-y: scroll;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+  .aboutus{
+    width: 100vw;
+  }
+  #Mainbody{
+    flex-direction: column;
+    flex-wrap: nowrap;
+    /* justify-content: space-between; */
+    align-items: center;
+  }
+  #AdminButton{
+    flex-direction: column;
+    flex-wrap: nowrap;
+    /* justify-content: center; */
+    align-items: center;
+  }
 
   .aboutus img{
     display: none;

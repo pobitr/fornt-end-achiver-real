@@ -86,7 +86,7 @@ export default function UserHome() {
               />
             </div>
             <div className="carousel-inner">
-              <div className="carousel-item active" style={{ height: "70vh" }}>
+            <div className="carousel-item active" style={{ }}id="carouselEl">
                 <img
                   style={{ height: "100%" }}
                   src={slider1}
@@ -97,7 +97,7 @@ export default function UserHome() {
                  
                 </div>
               </div>
-              <div className="carousel-item" style={{ height: "70vh" }}>
+              <div className="carousel-item active" style={{ }}id="carouselEl">
                 <img
                   style={{ height: "100%" }}
                   src={slider2}
@@ -108,7 +108,7 @@ export default function UserHome() {
                   
                 </div>
               </div>
-              <div className="carousel-item" style={{ height: "70vh" }}>
+              <div className="carousel-item active" style={{ }}id="carouselEl">
                 <img
                   style={{ height: "100%" }}
                   src={slider3}
@@ -144,8 +144,8 @@ export default function UserHome() {
         {/* aboutus */}
         <h1 className="mx-5 mt-3 p-3 text-success text-center">About Us</h1>
 
-        <div className="d-flex justify-content-around" style={{}}>
-          <div id="about" className="aboutus" style={{ width: "60vw" }}>
+        <div className="d-flex justify-content-around" style={{}} id="Mainbody">
+        <div id="about" className="aboutus" style={{  }}>
             <div className="d-flex justify-content-between mt-3">
               <img src={about} style={{ width: "50%" }} />
               <div className="mx-3">
@@ -177,7 +177,6 @@ export default function UserHome() {
           <div
             id="notices"
             className="noitceBoard  border border-2 border-success rounded-1 text-center"
-            style={{ width: "20vw", height: "40vh", overflowY: "scroll" }}
           >
             <h1 className="text-danger mb-3 border-bottom border-2 border-danger">
               Notice
@@ -242,7 +241,7 @@ export default function UserHome() {
           <h1 className="text-center text-success mb-5">Contact us</h1>
           <form>
             <div className="d-flex justify-content-center flex-wrap">
-              <div className="form-container mb-5" style={{ width: "55vw" }}>
+            <div className="form-container mb-5" style={{  }} id="formEL">
                 <label htmlFor="name">Name:</label>
                 <input type="text" id="name" name="name" required />
                 <label htmlFor="email">Email:</label>
@@ -304,7 +303,7 @@ export default function UserHome() {
           </footer>
 
           {/* Admin login button */}
-          <div className="d-flex justify-content-end mx-5">
+          <div className="d-flex justify-content-end mx-5" id="AdminButton">
             <button
               className="btn btn-sm btn-outline-dark"
               onClick={() => {

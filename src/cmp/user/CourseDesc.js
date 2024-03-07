@@ -110,15 +110,15 @@ export default function CourseDesc() {
       {/* Course Desc and join button*/}
 
       <div className="d-flex flex-column m-auto" style={{ marginTop: "1rem", width: "70vw", gap: '2rem', padding: "20px" }}>
-        <div className="d-flex" style={{ gap: "5rem", width: "100%" }}>
-          <div className="d-flex flex-column" style={{ width: "100%" }}>
+        <div className="d-flex" style={{  }} id='descriptonabute'>
+          <div className="d-flex flex-column" style={{  }} id='descaling'>
             <h2 style={{ color: "red", marginBottom: "1rem" }}>About this course</h2>
             {/* course full description will go here */}
             <p style={{ textAlign: "justify" }}>Where can I get some?
               There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
 
           </div>
-          <img src={join} style={{ width: "30%" }} />
+          <img src={join} style={{ }} className='descImg' />
         </div>
         <div>
           <button className='button buttonCD'>Join Course for free</button>
@@ -126,7 +126,7 @@ export default function CourseDesc() {
       </div>
     
       {/* Course duration and course fee */}
-      <div className='d-flex m-auto border mt-5 bg-primary-subtle text-dark p-4 justify-content-around' style={{ width: "70vw" }}>
+      <div className='d-flex m-auto border mt-5 bg-primary-subtle text-dark p-4 justify-content-around descReateEl' style={{ }}>
         <div className='d-flex gap-1 border'>
           <AccessTimeIcon fontSize="large" color="success" />
           <h3>Duration: {courseDuration} Month</h3>
