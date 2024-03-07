@@ -389,7 +389,7 @@ code {
 .descReateEl{
   width: 70vw;
 }
-@media only screen and (max-width : 390px) {
+@media only screen and (max-width : 425px) {
   .descReateEl{
     width: 100%;
   }

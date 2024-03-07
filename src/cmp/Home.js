@@ -13,6 +13,7 @@ import axios from "axios";
 import Navbar from './Navbar'
 import Video from "./VideoA";
 import { getAllCourse, getAllNotice } from "../Service/homeService";
+import { BASE_URL } from "./urlConfig/Url";
 
 export default function Home() {
   const [noticeList, setnoticeList] = useState([]);
@@ -93,7 +94,7 @@ export default function Home() {
                 
               </div>
             </div>
-            <div className="carousel-item" style={{ }}>
+            <div className="carousel-item" style={{ }} id="carouselEl">
               <img
                 style={{ height: "100%" }}
                 src={slider2}
@@ -104,7 +105,7 @@ export default function Home() {
                 
               </div>
             </div>
-            <div className="carousel-item" style={{ }}>
+            <div className="carousel-item" style={{ }} id="carouselEl">
               <img
                 style={{ height: "100%" }}
                 src={slider3}
@@ -206,7 +207,7 @@ export default function Home() {
           {courseList.map((course, i) => (
             <div className="card" style={{ width: "20rem" }}>
               <img
-                src={"http://localhost:8080/images/" + course.fileName}
+                src={BASE_URL+"/images/" + course.fileName}
                 className="card-img-top"
                 alt="..."
                 height={200}

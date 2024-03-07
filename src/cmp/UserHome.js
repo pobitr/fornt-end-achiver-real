@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { getAllCourse, getAllNotice } from "../Service/homeService";
+import { BASE_URL } from "./urlConfig/Url";
 
 export default function UserHome() {
   const [noticeList, setnoticeList] = useState([]);
@@ -210,7 +211,7 @@ export default function UserHome() {
             {courseList.map((course, i) => (
               <div className="card" style={{ width: "20rem" }}>
                 <img
-                  src={"http://localhost:8080/images/" + course.fileName}
+                  src={BASE_URL+"/images/" + course.fileName}
                   className="card-img-top"
                   alt="..."
                   height={200}
