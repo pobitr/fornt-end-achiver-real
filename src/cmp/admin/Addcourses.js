@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { adminCourseAdd } from "../../Service/adminService";
+import { BASE_URL } from "../urlConfig/Url";
 
 export default function Addcourses() {
   const [courseCode, setcourseCode] = useState("");
@@ -92,7 +93,7 @@ export default function Addcourses() {
       // reader.readAsDataURL(file[0])
       const fileData = new FormData();
       fileData.append("file", file[0]);
-      fetch("http://localhost:8080/api" + "/upload", {
+      fetch(BASE_URL + "/api" + "/upload", {
         method: "POST",
         body: fileData,
       })
