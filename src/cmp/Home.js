@@ -178,7 +178,7 @@ export default function Home() {
           <h1 className="text-danger mb-3 border-bottom border-2 border-danger">
             Notice
           </h1>
-          {noticeList.map((notice, i) => (
+          {noticeList && noticeList.map((notice, i) => (
             <div>
               <dl style={{}}>
                 <dt
@@ -204,7 +204,7 @@ export default function Home() {
         <h1 className="mb-5">Courses</h1>
 
         <div className="d-flex flex-wrap justify-content-center gap-5">
-          {courseList.map((course, i) => (
+          {courseList && courseList.map((course, i) => (
             <div className="card" style={{ width: "20rem" }}>
               <img
                 src={BASE_URL+"/images/" + course.fileName}
